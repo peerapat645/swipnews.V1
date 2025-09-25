@@ -20,6 +20,7 @@ public class login extends popup implements MouseListener {
     private JLabel plsuser_password;
     private JLabel imageLabelLock;
     private JLabel imageLabelUser;
+    private JLabel dout_have_accout;
     //private JLabel backicon ;
     private JRadioButton showePassword;
     private JLabel botton_admin;
@@ -37,14 +38,18 @@ public class login extends popup implements MouseListener {
         panel.setPreferredSize(new Dimension(300, 400)); // กำหนดขนาด panel
 
         //เพิ่มตัวอักษร Walcome 
-        label_wallcome = new JLabel("      Welcome ");
+        label_wallcome = new JLabel("      Sing In ");
         label_wallcome.setFont(new Font("Leelawadee UI", Font.BOLD, 28)); // เปลี่ยนฟอนต์ไทยและขนาด
         plsuser_password = new JLabel("Please enter the user password");
         plsuser_password.setFont(new Font("Leelawadee UI", Font.PLAIN, 16)); // เปลี่ยนฟอนต์ไทยและขนาด
         plsuser_password.setForeground(Color.gray); // เปลี่ยนสีข้อความเป็นสีเทา
 
+        //เพิ่มตัวอักษร dout have accout
+        dout_have_accout = new JLabel("doun't have an accout ");
+        dout_have_accout.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
+
         //เพิ่มปุ่ม login ลงใน panel
-        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
+        login = new setRoundedbotton("Sing in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
         //เพิ่มขีด label_adminและ singup
         botton_admin = new JLabel("<html><u>Login as admin</u></html>");
         botton_singup = new JLabel("<html><u>Singup</u></html>");
@@ -80,7 +85,7 @@ public class login extends popup implements MouseListener {
         imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
 
         //ปรับตำแหน่งปุ่มและขนาด
-        label_wallcome.setBounds(35, 35, 300, 40); // x, y, width, height 
+        label_wallcome.setBounds(55, 35, 300, 40); // x, y, width, height 
         plsuser_password.setBounds(40, 70, 300, 40); // x, y, width, height
         username.setBounds(80, 140, 170, 30); // x, y, width, height
         password.setBounds(80, 180, 170, 30); // x, y, width, height
@@ -89,11 +94,11 @@ public class login extends popup implements MouseListener {
         imageLabelUser.setBounds(40, 140, 26, 26); // x, y, width, height
         imageLabelLock.setBounds(40, 180, 26, 26); // x, y, width, height
         //backicon.setBounds(10, 360, 26, 26); // x, y, width, height
-        botton_admin.setBounds(180, 360, 150, 30); // x, y, width, height
+        botton_admin.setBounds(5, 360, 150, 30); // x, y, width, height
          botton_admin.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
-        botton_singup.setBounds(205, 210, 100, 30); // x, y, width, height
+        botton_singup.setBounds(145, 335, 100, 30); // x, y, width, height
          botton_singup.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
-        
+        dout_have_accout.setBounds(5, 335, 300, 30); // x, y, width, height 
         
 
         //เพิ่มปุ่มลงใน panel
@@ -104,7 +109,8 @@ public class login extends popup implements MouseListener {
         panel.add(showePassword);
         panel.add(imageLabelUser);
         panel.add(imageLabelLock);
-        panel.add(plsuser_password);  
+        panel.add(plsuser_password);
+        panel.add(dout_have_accout);  
         //panel.add(backicon);
         panel.add(botton_admin);
         panel.add(botton_singup);

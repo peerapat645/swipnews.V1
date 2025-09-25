@@ -34,7 +34,7 @@ public class adminLogin extends popup implements MouseListener {
         panel.setPreferredSize(new Dimension(300, 400)); // กำหนดขนาด panel
 
         //เพิ่มตัวอักษร Walcome Author
-        label_login = new JLabel("Welcome Admin");
+        label_login = new JLabel("Admin Login");
         label_login.setFont(new Font("Leelawadee UI", Font.BOLD, 28)); // เปลี่ยนฟอนต์ไทยและขนาด
         plsuser_password = new JLabel("Please enter the user password");
         plsuser_password.setFont(new Font("Leelawadee UI", Font.PLAIN, 16)); // เปลี่ยนฟอนต์ไทยและขนาด
@@ -73,7 +73,7 @@ public class adminLogin extends popup implements MouseListener {
 
 
         //ปรับตำแหน่งปุ่มและขนาด
-        label_login.setBounds(35, 35, 300, 40); // x, y, width, height 
+        label_login.setBounds(65, 35, 300, 40); // x, y, width, height 
         plsuser_password.setBounds(40, 70, 300, 40); // x, y, width, height
         username.setBounds(80, 140, 170, 30); // x, y, width, height
         password.setBounds(80, 180, 170, 30); // x, y, width, height
