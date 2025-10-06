@@ -14,7 +14,8 @@ public class NewsFeedPanal extends setRoundedPanel implements MouseListener, Mou
     private int startX = 0;
     private int startY = 0;
     private int offsetX = 0; // ระยะเลื่อนแนวนอน
-    private JMenuItem menuItemCategory;
+    private JMenuItem menuItemCategory1,menuItemCategory2;
+    JMenu menu = new JMenu("Options");
 
 public NewsFeedPanal() {
     super(20);
@@ -25,11 +26,16 @@ public NewsFeedPanal() {
     this.addMouseMotionListener(this);
 
     // สร้างเมนู
-    JMenu menu = new JMenu("Options");
-    menuItemCategory = new JMenuItem("Menu Item 1");
-    menu.add(menuItemCategory);
+    
+    menuItemCategory1 = new JMenuItem("Menu Item 1");
+    menuItemCategory2 = new JMenuItem("Menu Item 2");
+    
+
+    menu.add(menuItemCategory2);
+    menu.add(menuItemCategory1);
+
     // เพิ่ม ActionListener ให้กับเมนูไอเท็ม
-    menuItemCategory.addActionListener(new ActionListener() {
+    menuItemCategory1.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Menu Item 1 selected");

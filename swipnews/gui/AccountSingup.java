@@ -91,7 +91,7 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
     user.setBounds(70, 100, 180, 30);
     imageUser.setBounds(40, 100, 26, 26);
     email.setBounds(70, 140, 180, 30);
-    imageemail.setBounds(38,140,30,30);
+    imageemail.setBounds(40,140,30,30);
     lbPass.setBounds(110, 170, 100, 22);
     pass.setBounds(70, 180, 180, 30);
     imageLockpass.setBounds(40, 180, 26, 26);
@@ -100,7 +100,7 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
     showpass.setBounds(80, 260, 160, 24);
     login.setBounds(100, 310, 120, 40);
     textsingup.setBounds(110, 35, 300, 40);
-    backicon.setBounds(10, 380, 26, 26);
+    backicon.setBounds(10, 360, 26, 26);
 
 
     panel.add(lbUser);
