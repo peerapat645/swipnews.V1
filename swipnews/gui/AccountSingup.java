@@ -1,8 +1,10 @@
 package gui;
+import java.util.Locale;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import gui.set.*;
+import gui.set.*;   
+import gui.Pass.PasswordValidatorCase;
 
 public class AccountSingup extends popup implements ActionListener, MouseListener {
 
@@ -79,6 +81,8 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
             }
             
         });
+        
+    
        
     login.addActionListener(this);
 
@@ -91,16 +95,16 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
     user.setBounds(70, 100, 180, 30);
     imageUser.setBounds(40, 100, 26, 26);
     email.setBounds(70, 140, 180, 30);
-    imageemail.setBounds(38,140,30,30);
+    imageemail.setBounds(40,140,30,30);
     lbPass.setBounds(110, 170, 100, 22);
     pass.setBounds(70, 180, 180, 30);
     imageLockpass.setBounds(40, 180, 26, 26);
     conpass.setBounds(70, 220, 180, 30);
     imageLockconpass.setBounds(40, 220, 26, 26);
-    showpass.setBounds(80, 260, 160, 24);
+    showpass.setBounds(150, 260, 160, 24);
     login.setBounds(100, 310, 120, 40);
     textsingup.setBounds(110, 35, 300, 40);
-    backicon.setBounds(10, 380, 26, 26);
+    backicon.setBounds(10, 360, 26, 26);
 
 
     panel.add(lbUser);
@@ -125,6 +129,18 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
         backicon.addMouseListener(this);
     }
 
+
+
+        private static boolean isGmail(String s) {
+    if (s == null) return false;
+    String e = s.trim().toLowerCase(Locale.ROOT);
+    // ต้องลงท้าย @gmail.com, มี @ แค่ตัวเดียว และไม่มีเว้นวรรค
+    return e.endsWith("@gmail.com")
+           && e.indexOf('@') == e.lastIndexOf('@')
+           && !e.contains(" ");
+        }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String username = user.getText();
@@ -139,13 +155,38 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
             JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ตรงกัน", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+         // บังคับ @gmail.com 
+    if (!isGmail(emailText)) {
+        JOptionPane.showMessageDialog(panel, "อีเมลต้องเป็น @gmail.com เท่านั้น ไปใส่มาใหม่", "Error", JOptionPane.ERROR_MESSAGE);
+        email.requestFocus();
+        return;
+        }
+
+        // ตรวจสอบความแข็งแรงของรหัสผ่าน (เรียกจาก PasswordValidatorCase)
+        PasswordValidatorCase.PasswordStrength strength = PasswordValidatorCase.validate(password);
+        switch (strength) {
+            case INVALID:
+                JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ถูกต้อง: ต้องมีอย่างน้อย 8 ตัวอักษร", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
+                return;
+            case WEAK:
+                JOptionPane.showMessageDialog(panel, "รหัสผ่านอ่อน: กรุณาใช้ตัวอักษรผสมตัวเลข หรือเพิ่มความยาวให้มากขึ้น", "คำเตือน", JOptionPane.WARNING_MESSAGE);
+                return;
+            case MEDIUM:
+                // ยอมรับได้ แต่แจ้งเตือนให้ผู้ใช้ทราบ
+                int confirmMedium = JOptionPane.showConfirmDialog(panel, "รหัสผ่านระดับกลาง — ต้องการใช้รหัสผ่านนี้หรือไม่?", "ยืนยันรหัสผ่าน", JOptionPane.YES_NO_OPTION);
+                if (confirmMedium != JOptionPane.YES_OPTION) return;
+                break;
+            case STRONG:
+                // ยอดเยี่ยม — ดำเนินการต่อ
+                break;
+        }
         // บันทึกข้อมูลลงไฟล์ useraccount.scr จะมี(username,password)
         try {
-            java.io.FileWriter fw = new java.io.FileWriter("./File/accout/useraccount.csv", true);
+            java.io.FileWriter fw = new java.io.FileWriter("./File/accout/useraccount.scr", true);
             fw.write("\n"+username + "," + password);
             fw.close();
             // บันทึก email แยกไว้ในไฟล์ email.scr
-            java.io.FileWriter emailfw = new java.io.FileWriter("./File/accout/email.csv", true);
+            java.io.FileWriter emailfw = new java.io.FileWriter("./File/accout/email.scr", true);
             emailfw.write("\n"+emailText);
             emailfw.close();
             JOptionPane.showMessageDialog(panel, "สมัครสมาชิกสำเร็จ!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -183,7 +224,7 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
                 return;
             }
             if (found) {
-                new App(inputUser).setVisible(true);
+                new App().setVisible(true);
                 this.dispose();
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -210,6 +251,9 @@ public class AccountSingup extends popup implements ActionListener, MouseListene
     public void mouseExited(MouseEvent e) {
         // Not used
     }
+    
+    
+
 }
 
 
