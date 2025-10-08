@@ -9,16 +9,16 @@ import gui.set.popup;
 import gui.set.setRoundedPanel;
 
 public class App extends popup  implements MouseListener {
-
-    
+    private String username;
     private setRoundedPanel panel, menu_panel ;
     private JLabel imageFeednews, imgewrite, imagehistory; 
     private JLabel text_history, text_Feednews, text_write;
     private JMenu menu_category; // เมนูที่จะแสดงเมื่อกดปุ่มเมนู
     
 
-    public App() {
+    public App(String username) {
         super();
+        this.username = username;
         setTitle("App-Feednews | SwipNews"); // ตั้งชื่อหน้าต่าง
         getContentPane().setBackground(Color.LIGHT_GRAY); // เปลี่ยนสีพื้นหลังของ login panel หลัก
         setLayout(new GridBagLayout()); // ให้อยู่กลางหน้าต่าง
@@ -67,7 +67,7 @@ public class App extends popup  implements MouseListener {
         add(panel); // เพิ่ม panel หลักเข้าไปในหน้าต่าง
         panel.add(menu_panel); // เพิ่ม panel เมนูเข้าไปใน panel หลัก    
 
-        panel.add(new NewsFeedPanal()); // เพิ่ม NewsFeed เข้าไปใน mainPanel
+        panel.add(new NewsFeedPanal(username)); // เพิ่ม NewsFeed เข้าไปใน mainPanel
 
         //เพิ่มปุ่ม ตรงเมนู
         menu_panel.add(imagehistory); // เพิ่มรูปภาพเข้าไปใน panel เมนู
@@ -101,13 +101,13 @@ public class App extends popup  implements MouseListener {
 
         }
         if (w == imgewrite ) {
-             new WritePopup().setVisible(true);
+             new WritePopup(username).setVisible(true);
     
         }
         if (h == imagehistory ) {
             setTitle("App-history | SwipNews"); // ตั้งชื่อหน้าต่าง
             panel.removeAll(); // ลบเนื้อหาทั้งหมดใน panel
-            panel.add(new HistoryPanal()); // เพิ่ม History เข้าไปใน mainPanel
+            panel.add(new HistoryPanal(username)); // เพิ่ม History เข้าไปใน mainPanel โดยส่ง username
             panel.add(menu_panel); // เพิ่ม panel เมนูเข้าไปใน panel หลัก    
             panel.revalidate(); // รีเฟรช panel
             panel.repaint(); // วาด panel ใหม่
@@ -115,7 +115,7 @@ public class App extends popup  implements MouseListener {
         if (f == imageFeednews ) {
             setTitle("App-Feednews | SwipNews"); // ตั้งชื่อหน้าต่าง
             panel.removeAll(); // ลบเนื้อหาทั้งหมดใน panel
-            panel.add(new NewsFeedPanal()); // เพิ่ม NewsFeed เข้าไปใน mainPanel
+            panel.add(new NewsFeedPanal(username)); // เพิ่ม NewsFeed เข้าไปใน mainPanel
             panel.add(menu_panel); // เพิ่ม panel เมนูเข้าไปใน panel หลัก    
             panel.revalidate(); // รีเฟรช panel
             panel.repaint(); // วาด panel ใหม่

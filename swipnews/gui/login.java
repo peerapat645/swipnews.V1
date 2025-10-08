@@ -148,7 +148,7 @@ public class login extends popup implements MouseListener {
             boolean found = false;
             try {
                 java.io.BufferedReader reader = new java.io.BufferedReader(
-                    new java.io.FileReader("./File/accout/useraccount.scr")); // ใช้ path ตรงกับ root project
+                    new java.io.FileReader("./File/accout/useraccount.csv")); // ใช้ path ตรงกับ root project
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -164,7 +164,7 @@ public class login extends popup implements MouseListener {
                 return;
             }
             if (found) {
-                new App().setVisible(true);
+                new App(inputUser).setVisible(true);
                 this.dispose();
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "The username or password is incorrect.!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
