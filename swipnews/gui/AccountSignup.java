@@ -7,30 +7,38 @@ import gui.set.*;
 
 public class AccountSignup extends popup implements ActionListener, MouseListener {
 
-    
+    private setRoundedPanel panel2;
     private setJTextField user , email ;          
     private setPasswordField pass , conpass;      
     private JLabel lbUser, lbPass, textsingup ,backicon, textPanel2;
-    private JPanel panel, panel2;
+    private JPanel panel ;
     private JLabel imageUser, imageLockpass, imageLockconpass,imageemail;
     private setRoundedbotton login;
     private JRadioButton showpass;
+    private JLabel Logo;
     
     
     
     public AccountSignup() {
-        super();
-        setTitle("AccountSignup | SwipNews"); // ตั้งชื่อหน้าต่าง
-        setLayout (null);
+       super();
         textsingup = new JLabel("Sign up");
         textsingup.setFont(new Font("Leelawadee UI", Font.BOLD, 22));
         textsingup.setForeground(Color.BLACK); 
-        
+
+        setTitle("AccountSignup | SwipeNews");
+        getContentPane().setBackground(Color.LIGHT_GRAY);
+
          // สร้าง label ข้อความต่างๆในpanel2
         //อันนี้หัวข้อ
      JLabel Text2 = new JLabel("Recommend Password Policy");
      Text2.setFont(new Font("Leelawadee UI", Font.BOLD, 14));
      Text2.setForeground(Color.BLACK);
+
+     Logo = new JLabel(new ImageIcon("./icon/logo.png"));//เพิ่มรูปภาพล็อก
+         add(Logo);
+         Logo.setBounds(20,-30,512,512);
+         //ปรับขนาดภาพ
+         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logo.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH))); 
      
 
      //เนิ้อหาย่อยๆ
@@ -48,16 +56,16 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
 
     
     // สร้างpanelทางซ้าย ก้คือpanel2
-    panel2 = new setRoundedPanel(20);
+    panel2 = new setRoundedPanel(50);
     panel2.setLayout(null); 
-    panel2.setBackground(Color.WHITE); // ตั้งพื้นหลังเป็นสีน้ำเงิน
-    panel2.setPreferredSize(new Dimension(300, 210));
+    panel2.setBackground(Color.WHITE);
+    
 
     
     panel = new setRoundedPanel(20);
     panel.setLayout(null);
     panel.setBackground(Color.WHITE);
-    panel.setPreferredSize(new Dimension(380, 420));
+    
         
 
         //สร้าง label สำหรับชื่อผู้ใช้กับรหัสผ่าน
@@ -68,7 +76,7 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         lbPass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
 
       
-        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
+        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
        
         //เพิ่ม backicon
         backicon = new JLabel(new ImageIcon("./icon/back.png"));
@@ -117,23 +125,23 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
        imageLockconpass = new JLabel(new ImageIcon("./icon/unlock.png"));
 
     // ตำแหน่ง (ใน panel ขวา)
-    user.setBounds(70, 100, 180, 30);
-    imageUser.setBounds(40, 100, 26, 26);
-    email.setBounds(70, 140, 180, 30);
-    imageemail.setBounds(37,140,30,30);
-    lbPass.setBounds(110, 170, 100, 22);
-    pass.setBounds(70, 180, 180, 30);
-    imageLockpass.setBounds(40, 180, 26, 26);
-    conpass.setBounds(70, 220, 180, 30);
-    imageLockconpass.setBounds(40, 220, 26, 26);
-    showpass.setBounds(70, 260, 160, 24);
-    login.setBounds(100, 310, 120, 40);
-    textsingup.setBounds(140, 35, 300, 40);
-    backicon.setBounds(10, 380, 26, 26);
+    user.setBounds(100, 110, 180, 30);
+    imageUser.setBounds(70, 110, 26, 26);
+    email.setBounds(100, 150, 180, 30);
+    imageemail.setBounds(65,150,30,30);
+    lbPass.setBounds(110, 180, 100, 22);
+    pass.setBounds(100, 190, 180, 30);
+    imageLockpass.setBounds(70, 190, 26, 26);
+    conpass.setBounds(100, 230, 180, 30);
+    imageLockconpass.setBounds(70, 230, 26, 26);
+    showpass.setBounds(130, 270, 160, 24);
+    login.setBounds(130, 320, 120, 40);
+    textsingup.setBounds(150, 35, 300, 40);
+    backicon.setBounds(10, 460, 26, 26);
     Text2.setBounds(30, 115, 260, 20);
-    panel2.setBounds(20, 265, 300, 210);
-    panel2.setOpaque(true);
-    panel.setBounds(340, 50, 380, 420);
+    panel2.setBounds(125, 360, 300, 210);
+    
+    panel.setBounds(500,75, 400, 500);
 
     panel.add(lbUser);
     panel.add(user);
@@ -153,7 +161,7 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     
     add(panel2);
     add(panel);
-    setLocationRelativeTo(null);
+    
     
 
    //ใน panel2
@@ -301,4 +309,5 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
    
 
 }
+
 
