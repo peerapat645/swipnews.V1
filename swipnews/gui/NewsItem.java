@@ -47,15 +47,21 @@ public class NewsItem {
 
     // ตรวจสอบว่ามีรูปหรือไม่
     public boolean hasImage() {
-        String imagePath = getImagePath();
-        File imageFile = new File(imagePath);
-        return imageFile.exists();
+         return getImagePath() != null;
     }
 
     // ดึง path ของรูปภาพ
-    public String getImagePath() {
-        return String.format("./File/accout/news/images/%d.png", id);
+public String getImagePath() {
+    String[] extensions = {"jpg", "png"}; // ลำดับสำคัญ: ถ้าอยากให้ jpg ถูกเช็คก่อน
+    for (String ext : extensions) {
+        String path = String.format("./File/accout/news/photo/%d.%s", id, ext);
+        File file = new File(path);
+        if (file.exists()) {
+            return path; // คืนค่าที่เจอไฟล์จริง
+        }
     }
+    return null; // ไม่มีไฟล์รูป
+}
 
     // String representation for debugging
     @Override
@@ -63,4 +69,5 @@ public class NewsItem {
         return String.format("[%d] %s - %s (by %s at %s)", 
             id, category, topic, userId, timestamp.toString());
     }
+
 }

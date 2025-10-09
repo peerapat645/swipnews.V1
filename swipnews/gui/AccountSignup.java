@@ -7,10 +7,11 @@ import gui.set.*;
 
 public class AccountSignup extends popup implements ActionListener, MouseListener {
 
+    
     private setJTextField user , email ;          
-    private setPasswordField pass , conpass;       
-    private JLabel lbUser, lbPass, textsingup ,backicon ;
-    private JPanel panel;
+    private setPasswordField pass , conpass;      
+    private JLabel lbUser, lbPass, textsingup ,backicon, textPanel2;
+    private JPanel panel, panel2;
     private JLabel imageUser, imageLockpass, imageLockconpass,imageemail;
     private setRoundedbotton login;
     private JRadioButton showpass;
@@ -19,19 +20,44 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     
     public AccountSignup() {
         super();
+        setTitle("AccountSignup | SwipNews"); // ตั้งชื่อหน้าต่าง
+        setLayout (null);
         textsingup = new JLabel("Sign up");
         textsingup.setFont(new Font("Leelawadee UI", Font.BOLD, 22));
         textsingup.setForeground(Color.BLACK); 
+        
+         // สร้าง label ข้อความต่างๆในpanel2
+        //อันนี้หัวข้อ
+     JLabel Text2 = new JLabel("Recommend Password Policy");
+     Text2.setFont(new Font("Leelawadee UI", Font.BOLD, 14));
+     Text2.setForeground(Color.BLACK);
+     
+
+     //เนิ้อหาย่อยๆ
+     textPanel2 = new JLabel("<html>One uppercase letter (A–Z)<br>One lowercase letter (a–z)<br>One number (0–9)<br>One special character (!@#$%^&* or similar)</html>");
+     textPanel2.setFont(new Font("Leelawadee UI", Font.PLAIN, 12));
+     textPanel2.setForeground(Color.BLACK);
+     textPanel2.setBounds(30, 135, 240, 60);
+    
+        
    
 
-        setTitle("AccountSignup | SwipeNews");
-        getContentPane().setBackground(Color.LIGHT_GRAY);
-        setLayout(new GridBagLayout());         // จัด panel ให้อยู่กลาง
+    setTitle("AccountSignup | SwipeNews");
+    getContentPane().setBackground(Color.LIGHT_GRAY);
+    setLayout(null);
 
-        panel = new setRoundedPanel(20); //ทำให้มุมโค้ง เพื่อ????
-        panel.setLayout(null);                  
-        panel.setBackground(Color.WHITE);
-        panel.setPreferredSize(new Dimension(320, 420));
+    
+    // สร้างpanelทางซ้าย ก้คือpanel2
+    panel2 = new setRoundedPanel(20);
+    panel2.setLayout(null); 
+    panel2.setBackground(Color.WHITE); // ตั้งพื้นหลังเป็นสีน้ำเงิน
+    panel2.setPreferredSize(new Dimension(300, 210));
+
+    
+    panel = new setRoundedPanel(20);
+    panel.setLayout(null);
+    panel.setBackground(Color.WHITE);
+    panel.setPreferredSize(new Dimension(380, 420));
         
 
         //สร้าง label สำหรับชื่อผู้ใช้กับรหัสผ่าน
@@ -90,7 +116,7 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
        imageLockpass = new JLabel(new ImageIcon("./icon/unlock.png"));
        imageLockconpass = new JLabel(new ImageIcon("./icon/unlock.png"));
 
-    // ตำแหน่ง
+    // ตำแหน่ง (ใน panel ขวา)
     user.setBounds(70, 100, 180, 30);
     imageUser.setBounds(40, 100, 26, 26);
     email.setBounds(70, 140, 180, 30);
@@ -102,9 +128,12 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     imageLockconpass.setBounds(40, 220, 26, 26);
     showpass.setBounds(70, 260, 160, 24);
     login.setBounds(100, 310, 120, 40);
-    textsingup.setBounds(110, 35, 300, 40);
+    textsingup.setBounds(140, 35, 300, 40);
     backicon.setBounds(10, 380, 26, 26);
-
+    Text2.setBounds(30, 115, 260, 20);
+    panel2.setBounds(20, 265, 300, 210);
+    panel2.setOpaque(true);
+    panel.setBounds(340, 50, 380, 420);
 
     panel.add(lbUser);
     panel.add(user);
@@ -120,8 +149,26 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     panel.add(textsingup);
     panel.add(backicon);
     panel.add(imageemail);
-
+    
+    
+    add(panel2);
     add(panel);
+    setLocationRelativeTo(null);
+    
+
+   //ใน panel2
+    textPanel2.setHorizontalAlignment(SwingConstants.LEFT); // จัดข้อความชิดซ้าย
+    panel2.add(textPanel2);
+    panel2.add(Text2);
+
+    
+   
+
+    
+   
+
+    
+    
         
         // เพิ่ม MouseListener ให้ปุ่ม login
         login.addMouseListener(this);
@@ -250,10 +297,8 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     public void mouseExited(MouseEvent e) {
         // Not used
     }
-    
-    
+     
+   
 
 }
-
-
 

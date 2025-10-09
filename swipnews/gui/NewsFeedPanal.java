@@ -288,7 +288,7 @@ private void loadImage(int newsId) {
 
         g2.dispose();
     }
-
+// เมื่อปัดซ้าย (อ่านข่าวถัดไป)
     private void onSwipeLeft() {
         if (!filteredNews.isEmpty() && currentIndex >= 0 && currentIndex < filteredNews.size()) {
             // บันทึกว่าอ่านข่าวนี้แล้ว
@@ -299,7 +299,7 @@ private void loadImage(int newsId) {
             updateFilteredNews();
         }
     }
-
+// เมื่อปัดขวา (เปิดอ่านข่าวเต็ม)
     private void onSwipeRight() {
         if (!filteredNews.isEmpty() && currentIndex >= 0 && currentIndex < filteredNews.size()) {
             // เปิดหน้า Full News
@@ -310,7 +310,7 @@ private void loadImage(int newsId) {
             markNewsAsRead(current.getId());
             
             // อัพเดตรายการข่าวและข้ามไปข่าวถัดไป
-            updateFilteredNews();
+           // updateFilteredNews();
         }
     }
 // เลือกหมวดหมู่และอัปเดตรายการข่าว
