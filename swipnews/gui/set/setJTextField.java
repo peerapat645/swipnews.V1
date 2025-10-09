@@ -1,6 +1,5 @@
 package gui.set;
 
-import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 
@@ -35,6 +34,4 @@ public class setJTextField extends JTextField {
 	public void setFieldSize(int width, int height) {
 		setPreferredSize(new java.awt.Dimension(width, height));
 	}
-	
-
 }
