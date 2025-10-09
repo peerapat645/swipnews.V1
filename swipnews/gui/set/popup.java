@@ -2,16 +2,22 @@ package gui.set;
 
 import javax.swing.*;
 
+public abstract class popup extends JFrame {
 
-public abstract class popup extends JFrame{
-    public popup(){
-        // กำหนดค่าพื้นฐานของ JFrame
+    public popup() {
         super("");
-        this.setSize(600,700); //ยาวxกว้าง
+        this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setLayout(null);
+
+        // ใส่ภาพพื้นหลัง
+        ImageIcon backgroundImage = new ImageIcon("./icon/BG.jpg");
+        JLabel background = new JLabel(backgroundImage);
+        background.setBounds(0, 0, 1000, 700);
+
+        this.setContentPane(background);
     }
 }
-
 
