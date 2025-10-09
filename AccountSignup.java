@@ -1,0 +1,313 @@
+package gui;
+import java.util.Locale;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import gui.set.*;   
+
+public class AccountSignup extends popup implements ActionListener, MouseListener {
+
+    private setRoundedPanel panel2;
+    private setJTextField user , email ;          
+    private setPasswordField pass , conpass;      
+    private JLabel lbUser, lbPass, textsingup ,backicon, textPanel2;
+    private JPanel panel ;
+    private JLabel imageUser, imageLockpass, imageLockconpass,imageemail;
+    private setRoundedbotton login;
+    private JRadioButton showpass;
+    private JLabel Logo;
+    
+    
+    
+    public AccountSignup() {
+       super();
+        textsingup = new JLabel("Sign up");
+        textsingup.setFont(new Font("Leelawadee UI", Font.BOLD, 22));
+        textsingup.setForeground(Color.BLACK); 
+
+        setTitle("AccountSignup | SwipeNews");
+        getContentPane().setBackground(Color.LIGHT_GRAY);
+
+         // สร้าง label ข้อความต่างๆในpanel2
+        //อันนี้หัวข้อ
+     JLabel Text2 = new JLabel("Recommend Password Policy");
+     Text2.setFont(new Font("Leelawadee UI", Font.BOLD, 14));
+     Text2.setForeground(Color.BLACK);
+
+     Logo = new JLabel(new ImageIcon("./icon/logo.png"));//เพิ่มรูปภาพล็อก
+         add(Logo);
+         Logo.setBounds(20,-30,512,512);
+         //ปรับขนาดภาพ
+         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logo.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH))); 
+     
+
+     //เนิ้อหาย่อยๆ
+     textPanel2 = new JLabel("<html>One uppercase letter (A–Z)<br>One lowercase letter (a–z)<br>One number (0–9)<br>One special character (!@#$%^&* or similar)</html>");
+     textPanel2.setFont(new Font("Leelawadee UI", Font.PLAIN, 12));
+     textPanel2.setForeground(Color.BLACK);
+     textPanel2.setBounds(30, 135, 240, 60);
+    
+        
+   
+
+    setTitle("AccountSignup | SwipeNews");
+    getContentPane().setBackground(Color.LIGHT_GRAY);
+    setLayout(null);
+
+    
+    // สร้างpanelทางซ้าย ก้คือpanel2
+    panel2 = new setRoundedPanel(50);
+    panel2.setLayout(null); 
+    panel2.setBackground(Color.WHITE);
+    
+
+    
+    panel = new setRoundedPanel(20);
+    panel.setLayout(null);
+    panel.setBackground(Color.WHITE);
+    
+        
+
+        //สร้าง label สำหรับชื่อผู้ใช้กับรหัสผ่าน
+        lbUser = new JLabel();
+        lbUser.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
+
+        lbPass = new JLabel();
+        lbPass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
+
+      
+        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
+       
+        //เพิ่ม backicon
+        backicon = new JLabel(new ImageIcon("./icon/back.png"));
+        imageemail = new JLabel(new ImageIcon("./icon/email.png"));
+        
+
+        email = new setJTextField();
+        email.setFont("Tahoma", Font.PLAIN, 16);
+        email.setFieldSize(180, 28);
+
+        user = new setJTextField();
+        user.setFont("Tahoma", Font.PLAIN, 16);
+        user.setFieldSize(180, 28);
+
+        pass = new setPasswordField();          
+        pass.setFont("Tahoma", Font.PLAIN, 16);
+        pass.setFieldSize(180, 28);
+        pass.showPassword(false);  // เริ่มซ่อน 
+
+        conpass = new setPasswordField();
+        conpass.setFont("Tahoma", Font.PLAIN, 16);
+        conpass.setFieldSize(180, 28);
+        conpass.showPassword(false);  // เริ่มซ่อน           
+
+        showpass = new JRadioButton("Show Password");
+        showpass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
+        showpass.setBackground(Color.WHITE); 
+        // การทำงานของปุ่ม Show Password
+        showpass.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                pass.showPassword(showpass.isSelected());
+                 conpass.showPassword(showpass.isSelected());
+            }
+            
+        });
+        
+    
+       
+    login.addActionListener(this);
+
+      
+       imageUser = new JLabel(new ImageIcon("./icon/user.png"));
+       imageLockpass = new JLabel(new ImageIcon("./icon/unlock.png"));
+       imageLockconpass = new JLabel(new ImageIcon("./icon/unlock.png"));
+
+    // ตำแหน่ง (ใน panel ขวา)
+    user.setBounds(100, 110, 180, 30);
+    imageUser.setBounds(70, 110, 26, 26);
+    email.setBounds(100, 150, 180, 30);
+    imageemail.setBounds(65,150,30,30);
+    lbPass.setBounds(110, 180, 100, 22);
+    pass.setBounds(100, 190, 180, 30);
+    imageLockpass.setBounds(70, 190, 26, 26);
+    conpass.setBounds(100, 230, 180, 30);
+    imageLockconpass.setBounds(70, 230, 26, 26);
+    showpass.setBounds(130, 270, 160, 24);
+    login.setBounds(130, 320, 120, 40);
+    textsingup.setBounds(150, 35, 300, 40);
+    backicon.setBounds(10, 460, 26, 26);
+    Text2.setBounds(30, 115, 260, 20);
+    panel2.setBounds(125, 360, 300, 210);
+    
+    panel.setBounds(500,75, 400, 500);
+
+    panel.add(lbUser);
+    panel.add(user);
+    panel.add(email);
+    panel.add(lbPass);
+    panel.add(pass);
+    panel.add(conpass);
+    panel.add(showpass);
+    panel.add(login);
+    panel.add(imageUser);
+    panel.add(imageLockpass);
+    panel.add(imageLockconpass);
+    panel.add(textsingup);
+    panel.add(backicon);
+    panel.add(imageemail);
+    
+    
+    add(panel2);
+    add(panel);
+    
+    
+
+   //ใน panel2
+    textPanel2.setHorizontalAlignment(SwingConstants.LEFT); // จัดข้อความชิดซ้าย
+    panel2.add(textPanel2);
+    panel2.add(Text2);
+
+    
+   
+
+    
+   
+
+    
+    
+        
+        // เพิ่ม MouseListener ให้ปุ่ม login
+        login.addMouseListener(this);
+        backicon.addMouseListener(this);
+    }
+
+
+
+        private static boolean isGmail(String s) {
+    if (s == null) return false;
+    String e = s.trim().toLowerCase(Locale.ROOT);
+    // ต้องลงท้าย @gmail.com, มี @ แค่ตัวเดียว และไม่มีเว้นวรรค
+    return e.endsWith("@gmail.com")
+           && e.indexOf('@') == e.lastIndexOf('@')
+           && !e.contains(" ");
+        }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String username = user.getText();
+        String password = new String(pass.getPassword());
+        String confirm = new String(conpass.getPassword());
+        String emailText = email.getText();
+        if (username.isEmpty() || password.isEmpty() || confirm.isEmpty() || emailText.isEmpty()) {
+            JOptionPane.showMessageDialog(panel, "กรุณากรอกข้อมูลให้ครบถ้วน", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!password.equals(confirm)) {
+            JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ตรงกัน", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+         // บังคับ @gmail.com 
+    if (!isGmail(emailText)) {
+        JOptionPane.showMessageDialog(panel, "อีเมลต้องเป็น @gmail.com เท่านั้น ไปใส่มาใหม่", "Error", JOptionPane.ERROR_MESSAGE);
+        email.requestFocus();
+        return;
+        }
+
+        // ตรวจสอบความแข็งแรงของรหัสผ่าน (เรียกจาก PasswordValidatorCase)
+        PasswordValidatorCase.PasswordStrength strength = PasswordValidatorCase.validate(password);
+        switch (strength) {
+            case INVALID:
+                JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ถูกต้อง: ต้องมีอย่างน้อย 8 ตัวอักษร", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
+                return;
+            case WEAK:
+                JOptionPane.showMessageDialog(panel, "รหัสผ่านอ่อน: กรุณาใช้ตัวอักษรผสมตัวเลข หรือเพิ่มความยาวให้มากขึ้น", "คำเตือน", JOptionPane.WARNING_MESSAGE);
+                return;
+            case MEDIUM:
+                // ยอมรับได้ แต่แจ้งเตือนให้ผู้ใช้ทราบ
+                int confirmMedium = JOptionPane.showConfirmDialog(panel, "รหัสผ่านระดับกลาง — ต้องการใช้รหัสผ่านนี้หรือไม่?", "ยืนยันรหัสผ่าน", JOptionPane.YES_NO_OPTION);
+                if (confirmMedium != JOptionPane.YES_OPTION) return;
+                break;
+            case STRONG:
+                // ยอดเยี่ยม — ดำเนินการต่อ
+                break;
+        }
+        // บันทึกข้อมูลลงไฟล์ useraccount.csv จะมี(username,password)
+        try {
+            java.io.FileWriter fw = new java.io.FileWriter("./File/accout/useraccount.csv", true);
+            fw.write("\n"+username + "," + password);
+            fw.close();
+            // บันทึก email แยกไว้ในไฟล์ email.csv
+            java.io.FileWriter emailfw = new java.io.FileWriter("./File/accout/email.csv", true);
+            emailfw.write("\n"+emailText);
+            emailfw.close();
+            JOptionPane.showMessageDialog(panel, "สมัครสมาชิกสำเร็จ!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(panel, "เกิดข้อผิดพลาดในการบันทึกข้อมูล", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //การใช้ mouseClicked เพื่อตรวจสอบการคลิกปุ่ม login
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == backicon) {
+            new login().setVisible(true);
+            this.dispose();
+        }
+        if (e.getSource() == login) {
+            String inputUser = user.getText();
+            String inputPass = new String(pass.getPassword());
+            boolean found = false;
+            try {
+                java.io.BufferedReader reader = new java.io.BufferedReader(
+                    new java.io.FileReader("./File/accout/useraccount.scr"));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 2 && inputUser.equals(parts[0]) && inputPass.equals(parts[1])) {
+                        found = true;
+                        break;
+                    }
+                }
+                reader.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการอ่านไฟล์บัญชีผู้ใช้", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (found) {
+               new App(inputPass).setVisible(true);
+                this.dispose();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Not used
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Not used
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // Not used
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // Not used
+    }
+     
+   
+
+}
+
+
