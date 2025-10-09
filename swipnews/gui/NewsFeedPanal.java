@@ -310,7 +310,7 @@ private void loadImage(int newsId) {
             markNewsAsRead(current.getId());
             
             // อัพเดตรายการข่าวและข้ามไปข่าวถัดไป
-           // updateFilteredNews();
+            updateFilteredNews();
         }
     }
 // เลือกหมวดหมู่และอัปเดตรายการข่าว
@@ -358,4 +358,5 @@ private void loadImage(int newsId) {
 
     
     
+
 
