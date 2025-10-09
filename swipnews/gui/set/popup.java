@@ -13,7 +13,7 @@ public abstract class popup extends JFrame {
         this.setLayout(null);
 
         // ใส่ภาพพื้นหลัง
-        ImageIcon backgroundImage = new ImageIcon("./icon/BG.jpg");
+        ImageIcon backgroundImage = new ImageIcon("./icon/BG2.png");
         JLabel background = new JLabel(backgroundImage);
         background.setBounds(0, 0, 1000, 700);
 

@@ -37,7 +37,7 @@ public class login extends popup implements MouseListener{
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน่งเอง
         panel.setBounds(490, 80, 400, 500);//กำหนดตำแหน่ง panel
-        panel.setBackground(new Color(255, 255, 255)); // เปลี่ยนสีพื้นหลังของ panel
+        panel.setBackground(new Color(200, 255, 220)); // เปลี่ยนสีพื้นหลังของ panel
         panel.setPreferredSize(new Dimension(400, 500)); // กำหนดขนาด panel
 
         //เพิ่มตัวอักษร 
@@ -49,7 +49,7 @@ public class login extends popup implements MouseListener{
 
         label_wallcome = new JLabel("Welcome");
         label_wallcome.setFont(new Font("SansSerif", Font.BOLD, 60)); 
-
+        label_wallcome.setForeground(Color.WHITE);
 
         //เพิ่มตัวอักษร dout have accout
         dout_have_accout = new JLabel("doun't have an accout ");
@@ -88,14 +88,14 @@ public class login extends popup implements MouseListener{
 
         //เพิ่ม รูป
         //backicon = new JLabel(new ImageIcon("./icon/back.png"));//เพิ่มรูปภาพล็อก
-        imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
-        imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
-        Logo = new JLabel(new ImageIcon("./icon/logo.png"));//เพิ่มรูปภาพล็อก
+        imageLabelLock = new JLabel(new ImageIcon("./icon/password.png"));//เพิ่มรูปภาพล็อก
+        imageLabelUser = new JLabel(new ImageIcon("./icon/account.png"));//เพิ่มรูปภาพล็อก
+        Logo = new JLabel(new ImageIcon("./icon/logoW.png"));//เพิ่มรูปภาพล็อก
          add(Logo);
          Logo.setBounds(-10,150,512,512);
          //ปรับขนาดภาพ
-         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logo.png").getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH)));
-
+         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logoW.png").getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH)));
+        
 
         //ปรับตำแหน่งปุ่มและขนาด
         label_signin.setBounds(155, 35, 300, 40); // x, y, width, height 

@@ -14,6 +14,8 @@ import java.awt.Image;
 
 import javax.swing.*;
 
+import gui.set.GradientPanel;
+import gui.set.RoundedBorder;
 import gui.set.setRoundedbotton;
 
 
@@ -59,18 +61,32 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         // เก็บ username ที่รับมาจากหน้า login
         this.userId = username;
          
-        this.setSize(650, 700);
+        this.setSize(800, 800);
 
         // ปรับตำแหน่ง popup ให้อยู่ด้านขวาของหน้าจอ
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = screenSize.width - this.getWidth();
-        int y = (screenSize.height - this.getHeight()) / 2;
-        this.setLocation(x, y);
+        this.setLocationRelativeTo(null); 
         this.setResizable(false);
+
+         // ===== พื้นหลัง Gradient =====
+        GradientPanel backgroundPanel = new GradientPanel(
+                new Color(0, 168, 104),
+                new Color(200, 255, 220));
+        //backgroundPanel.setLayout(new GridBagLayout());
+        backgroundPanel.setLayout(new BorderLayout(0, 0));
+
 
         // ตั้งค่าหลัก
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(new Color(200, 255, 220)); // สีพื้นหลังอ่อน ๆ
+        
+        mainPanel.setBackground(new Color(200, 255, 220));
+        mainPanel.setPreferredSize(new Dimension(800, 500));
+        mainPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 168, 104), 20, true));
+        backgroundPanel.add(mainPanel, BorderLayout.CENTER);
+
+        backgroundPanel.add(mainPanel);
+        //add(backgroundPanel);
+        this.getContentPane().setLayout(new BorderLayout(0, 0));
+        this.getContentPane().add(backgroundPanel, BorderLayout.CENTER);
 
         // ---------------- Header ----------------
         JLabel title = new JLabel("WRITE");
@@ -102,15 +118,19 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         topicPanel.add(titleLabel);
 
          // TextArea สำหรับหัวข้อ
-        this.topicArea = new JTextArea(1, 5);
-        this.topicArea.setLineWrap(true);          // ตัดบรรทัดอัตโนมัติ
-        this.topicArea.setWrapStyleWord(true);     // ตัดตามคำ
-        this.topicArea.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        topicArea = new JTextArea(1, 5);
+        topicArea.setLineWrap(true);
+        topicArea.setWrapStyleWord(true);
+        topicArea.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        topicArea.setBackground(Color.WHITE);
+        topicArea.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         // ScrollPane ครอบ TextArea
-        JScrollPane topicscroll = new JScrollPane(this.topicArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // ไม่ให้มีแถบเลื่อนแนวนอน
-        topicscroll.setPreferredSize(new Dimension(350, 25));
+        JScrollPane topicscroll = new JScrollPane(topicArea,
+                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        topicscroll.setPreferredSize(new Dimension(500, 40));
+        topicscroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 3));
 
         topicPanel.add(topicscroll);
 
@@ -119,13 +139,14 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         new Font("Tahoma", Font.BOLD, 16));
         addPhotoBtn.setPreferredSize(new Dimension(100, 100));
         addPhotoBtn.setAlignmentX(Component.LEFT_ALIGNMENT); // ดันไปซ้าย
-        addPhotoBtn.setBackground(new Color(0, 168, 104)); // สีพื้นหลังเขียวเข้ม
-        addPhotoBtn.setForeground(Color.white);          // สีข้อความ/เส้นขอบ
+        addPhotoBtn.setBackground(Color.WHITE); // สีพื้นหลังเขียวเข้ม
+        addPhotoBtn.setForeground(Color.DARK_GRAY);// สีข้อความ/เส้นขอบ
+
 
         // สร้าง Label สำหรับแสดงตัวอย่างรูป
         photoPreview = new JLabel();
         photoPreview.setPreferredSize(new Dimension(PREVIEW_WIDTH, PREVIEW_HEIGHT));
-        photoPreview.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        photoPreview.setBorder(BorderFactory.createLineBorder(null));
         photoPreview.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel photoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 5));
@@ -163,30 +184,28 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         });
 
         // เนื้อหา
-        JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 15));
-        contentPanel.setOpaque(false);
+        JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 35)); 
+    contentPanel.setOpaque(false); 
+    JLabel contentLabel = new JLabel("Content :");
+    contentLabel.setFont(new Font("Tahoma", Font.PLAIN, 20)); 
+    contentLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+    contentPanel.add(contentLabel); 
 
-        // Label "Content :"
-        JLabel contentLabel = new JLabel("Content :");
-        contentLabel.setFont(new Font("Tahoma", Font.PLAIN, 20)); // ขยายขนาดฟอนต์
-        contentPanel.add(contentLabel);
-
-        // TextArea สำหรับเนื้อหา
-        this.contentArea = new JTextArea(10, 45);
-        this.contentArea.setLineWrap(true);          // ตัดบรรทัดอัตโนมัติ
-        this.contentArea.setWrapStyleWord(true);     // ตัดตามคำ
-        this.contentArea.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        //กำหนดขนาดเริ่มต้น
-        this.contentArea.setPreferredSize(new Dimension(500, 200));
+        contentArea = new JTextArea(5, 20); 
+    contentArea.setLineWrap(true); 
+    contentArea.setWrapStyleWord(true); 
+    contentArea.setFont(new Font("Tahoma", Font.PLAIN, 16)); 
+    contentArea.setBackground(Color.WHITE); 
+    contentArea.setBorder(BorderFactory.createEmptyBorder(100, 10, 0, 10)); 
         
     
     
         // ScrollPane ครอบ TextArea
-        JScrollPane scroll = new JScrollPane(this.contentArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // ไม่ให้มีแถบเลื่อนแนวนอน
-        scroll.setPreferredSize(new Dimension(500, 100));
-
-        contentPanel.add(scroll);
+        JScrollPane scroll = new JScrollPane(contentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
+     scroll.setPreferredSize(new Dimension(550, 125)); 
+     scroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 3)); 
+    contentPanel.add(scroll);
 
 
         // Confirm button
