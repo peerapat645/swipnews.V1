@@ -42,7 +42,7 @@ public class App extends popup  implements MouseListener {
 
         //เพิ่มรูป
         imageFeednews = new JLabel(new ImageIcon("./icon/newsfeed.png"));//เพิ่มรูปภาพ newsfeed
-        imgewrite = new JLabel(new ImageIcon("./icon/write.png"));//เพิ่มรูปภาพ write
+        imgewrite = new JLabel(new ImageIcon("./icon/write2.png"));//เพิ่มรูปภาพ write
         imagehistory = new JLabel(new ImageIcon("./icon/history.png"));//เพิ่มรูปภาพ history
             
 
