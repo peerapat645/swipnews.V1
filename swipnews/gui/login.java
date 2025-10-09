@@ -56,7 +56,7 @@ public class login extends popup implements MouseListener{
         dout_have_accout.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
 
         //เพิ่มปุ่ม login ลงใน panel
-        login = new setRoundedbotton("Sing in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
+        login = new setRoundedbotton("Sign in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
         //เพิ่มขีด label_adminและ signup
         botton_admin = new JLabel("<html><u>Login as admin</u></html>");
         botton_signup = new JLabel("<html><u>Signup</u></html>");
@@ -215,4 +215,5 @@ public class login extends popup implements MouseListener{
     
 }
     
+
 
