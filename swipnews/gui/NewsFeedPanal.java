@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+import java.awt.Color;
 
 public class NewsFeedPanal extends setRoundedPanel implements MouseListener, MouseMotionListener {
 
@@ -34,7 +35,7 @@ public NewsFeedPanal(String userId) {
     super(20);
     this.currentUserId = userId;
     this.setLayout(null);
-    this.setBackground(java.awt.Color.gray);
+    this.setBackground(new Color(245, 245, 245));
     this.setBounds(20, 20, 510, 510);
     this.addMouseListener(this);
     this.addMouseMotionListener(this);
@@ -240,7 +241,7 @@ private void loadImage(int newsId) {
         if (noMoreNews) {
             // แสดงข้อความเมื่อไม่มีข่าว
             g2.setFont(new Font("Leelawadee UI", Font.BOLD, 24));
-            String message = "ไม่มีข่าวใหม่แล้ว";
+            String message = "NONE NEWS";
             FontMetrics fm = g2.getFontMetrics();
             int messageWidth = fm.stringWidth(message);
             int x = (getWidth() - messageWidth) / 2;

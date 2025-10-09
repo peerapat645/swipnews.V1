@@ -299,7 +299,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             setRoundedbotton deleteBtn = new setRoundedbotton("Delete", 15, new Font("Tahoma", Font.PLAIN, 12));
             deleteBtn.setBackground(new Color(255, 100, 100));
             deleteBtn.setForeground(Color.WHITE);
-            deleteBtn.setBounds(155, 190, 60, 25);
+            deleteBtn.setBounds(135, 190, 80, 25);
             deleteBtn.addActionListener(e -> confirmDeleteNews(news.getId()));
             history.add(deleteBtn);
             histories.add(history);

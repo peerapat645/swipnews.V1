@@ -26,7 +26,7 @@ public class login extends popup implements MouseListener{
     //private JLabel backicon ;
     private JRadioButton showePassword;
     private JLabel botton_admin;
-    private JLabel botton_singup;
+    private JLabel botton_signup;
     
     
 
@@ -57,9 +57,9 @@ public class login extends popup implements MouseListener{
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Sing in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
-        //เพิ่มขีด label_adminและ singup
+        //เพิ่มขีด label_adminและ signup
         botton_admin = new JLabel("<html><u>Login as admin</u></html>");
-        botton_singup = new JLabel("<html><u>Singup</u></html>");
+        botton_signup = new JLabel("<html><u>Signup</u></html>");
 
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
         username = new setJTextField(); // สร้าง JTextField สำหรับชื่อผู้ใช้
@@ -103,14 +103,14 @@ public class login extends popup implements MouseListener{
         username.setBounds(100, 150, 210, 30); // x, y, width, height
         password.setBounds(100, 200, 210, 30); // x, y, width, height
         login.setBounds(150, 310, 100, 40); // x, y, width, height
-        showePassword.setBounds(100, 240, 120, 30); // x, y, width, height
+        showePassword.setBounds(140, 240, 120, 30); // x, y, width, height
         imageLabelUser.setBounds(60, 150, 26, 26); // x, y, width, height
         imageLabelLock.setBounds(60, 200, 26, 26); // x, y, width, height
         //backicon.setBounds(10, 360, 26, 26); // x, y, width, height
         botton_admin.setBounds(10, 450, 150, 30); // x, y, width, height
          botton_admin.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
-        botton_singup.setBounds(155, 420, 100, 30); // x, y, width, height
-         botton_singup.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
+        botton_signup.setBounds(155, 420, 100, 30); // x, y, width, height
+         botton_signup.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
         dout_have_accout.setBounds(10, 420, 300, 30); // x, y, width, height 
 
         label_wallcome.setBounds(100, 120, 300, 80); // x, y, width, height
@@ -128,7 +128,7 @@ public class login extends popup implements MouseListener{
         panel.add(dout_have_accout);  
         //panel.add(backicon);
         panel.add(botton_admin);
-        panel.add(botton_singup);
+        panel.add(botton_signup);
         
         
 
@@ -138,7 +138,7 @@ public class login extends popup implements MouseListener{
         login.addMouseListener(this);
         //backicon.addMouseListener(this);
         botton_admin.addMouseListener(this);
-        botton_singup.addMouseListener(this);
+        botton_signup.addMouseListener(this);
     }
 
     //การใช้ mouseClicked เพื่อตรวจสอบการคลิกปุ่ม login
@@ -148,7 +148,7 @@ public class login extends popup implements MouseListener{
         Object l = e.getSource();  
         Object a = e.getSource();
         Object s = e.getSource();
-        if (s == botton_singup ) {
+        if (s == botton_signup ) {
             new AccountSignup().setVisible(true);
             this.dispose();
             
