@@ -38,7 +38,7 @@ public class login extends popup implements MouseListener{
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน่งเอง
         panel.setBounds(490, 80, 400, 500);//กำหนดตำแหน่ง panel
-        panel.setBackground(new Color(200, 255, 220)); // เปลี่ยนสีพื้นหลังของ panel
+        panel.setBackground(Color.WHITE); // เปลี่ยนสีพื้นหลังของ panel
         panel.setPreferredSize(new Dimension(400, 500)); // กำหนดขนาด panel
 
         //เพิ่มตัวอักษร 
@@ -66,7 +66,7 @@ public class login extends popup implements MouseListener{
         login.setBackground(new Color(0, 153, 102)); // ปุ่มสีเขียวเข้ม
         login.setForeground(Color.WHITE);//ตัวอักษรสีขาว  
         //เพิ่มขีด label_adminและ signup
-        botton_admin = new JLabel("<html><u>Sign In as admin</u></html>");
+        botton_admin = new JLabel("<html><u>Login In as admin</u></html>");
         botton_signup = new JLabel("<html><u>Sign Up</u></html>");
         
 
@@ -86,7 +86,7 @@ public class login extends popup implements MouseListener{
         //เพิ่ม ปุ่ม showePassword และการทำงาน
         showePassword = new JRadioButton("Show Password"); 
         showePassword.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
-        showePassword.setBackground(new Color(200, 255, 220)); // เปลี่ยนสีพื้นหลังของปุ่มให้เข้ากับ panel
+        showePassword.setBackground(Color.WHITE); // เปลี่ยนสีพื้นหลังของปุ่มให้เข้ากับ panel
 
         //กด showePassword
         showePassword.addItemListener(new ItemListener() {

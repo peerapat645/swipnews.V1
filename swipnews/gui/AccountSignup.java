@@ -58,13 +58,13 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     // สร้างpanelทางซ้าย ก้คือpanel2
     panel2 = new setRoundedPanel(50);
     panel2.setLayout(null);; 
-    panel2.setBackground(new Color(200, 255, 220));
+    panel2.setBackground(Color.white);
     
 
     
     panel = new setRoundedPanel(20);
     panel.setLayout(null);
-    panel.setBackground(new Color(200, 255, 220));
+    panel.setBackground(Color.WHITE);
     
         
 
@@ -111,7 +111,7 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
 
         showpass = new JRadioButton("Show Password");
         showpass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
-        showpass.setBackground(new Color(200, 255, 220)); 
+        showpass.setBackground(Color.WHITE); 
         // การทำงานของปุ่ม Show Password
         showpass.addItemListener(new ItemListener() {
 

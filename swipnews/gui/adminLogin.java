@@ -14,8 +14,8 @@ public class adminLogin extends popup implements MouseListener {
 
     private setRoundedPanel panel;
     private setRoundedbotton login;
-    private setJTextField username;
-    private setPasswordField password;
+    private RoundedTextField username;
+    private RoundedPasswordField password;
     private JLabel label_login;
     private JLabel plsuser_password;
     private JLabel imageLabelLock;
@@ -42,19 +42,33 @@ public class adminLogin extends popup implements MouseListener {
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
-
+        login.setBackground(new Color(0, 153, 102)); // ปุ่มสีเขียวเข้ม
+        login.setForeground(Color.WHITE);//ตัวอักษรสีขาว
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
-        username = new setJTextField(); // สร้าง JTextField สำหรับชื่อผู้ใช้
-        username.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        username.setFieldSize(200, 30); // กำหนดขนาดของ JTextField
-        imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
+        username = new RoundedTextField(20); // สร้าง JTextField สำหรับชื่อผู้ใช้
+        username.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        username.setBackground(Color.WHITE);
+        username.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
+
+        
+        ImageIcon lockIcon = new ImageIcon("icon/password.png");
+        Image scaledLockpass = lockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelLock = new JLabel(new ImageIcon(scaledLockpass));
+        imageLabelLock.setOpaque(false);
+        //imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
 
         //เพิ่ม jJpasswordField สำหรับรหัสผ่าน
-        password = new setPasswordField(); // สร้าง JTextField สำหรับรหัสผ่าน
-        password.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        password.setFieldSize(180, 28);// กำหนดขนาดของ JTextField
+        password = new RoundedPasswordField(20); // 20 = จำนวน columns
+        password.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        password.setBackground(Color.WHITE);
+        password.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
         password.showPassword(false); // เริ่มต้นซ่อนรหัสผ่าน
-        imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
+        
+        ImageIcon UserIcon = new ImageIcon("./icon/account.png");
+        Image scaledUser = UserIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelUser = new JLabel(new ImageIcon(scaledUser));
+        imageLabelUser.setOpaque(false);
+        //imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
         
         //เพิ่ม ปุ่ม showePassword และการทำงาน
         showePassword = new JRadioButton("Show Password"); 
@@ -79,8 +93,8 @@ public class adminLogin extends popup implements MouseListener {
         password.setBounds(80, 180, 170, 30); // x, y, width, height
         login.setBounds(100, 250, 100, 40); // x, y, width, height
         showePassword.setBounds(80, 210, 150, 30); // x, y, width, height
-        imageLabelUser.setBounds(40, 140, 26, 26); // x, y, width, height
-        imageLabelLock.setBounds(40, 180, 26, 26); // x, y, width, height
+        imageLabelUser.setBounds(40, 140, 30, 30); // x, y, width, height
+        imageLabelLock.setBounds(40, 180, 30, 30); // x, y, width, height
         backicon.setBounds(10, 360, 26, 26); // x, y, width, height
         
         
