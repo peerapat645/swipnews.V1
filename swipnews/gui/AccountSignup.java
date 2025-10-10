@@ -8,8 +8,8 @@ import gui.set.*;
 public class AccountSignup extends popup implements ActionListener, MouseListener {
 
     private setRoundedPanel panel2;
-    private setJTextField user , email ;          
-    private setPasswordField pass , conpass;      
+    private RoundedTextField user , email ;          
+    private RoundedPasswordField pass , conpass;      
     private JLabel lbUser, lbPass, textsingup ,backicon, textPanel2;
     private JPanel panel ;
     private JLabel imageUser, imageLockpass, imageLockconpass,imageemail;
@@ -22,8 +22,8 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     public AccountSignup() {
        super();
         textsingup = new JLabel("Sign up");
-        textsingup.setFont(new Font("Leelawadee UI", Font.BOLD, 22));
-        textsingup.setForeground(Color.BLACK); 
+        textsingup.setFont(new Font("Leelawadee UI", Font.BOLD, 64));
+        textsingup.setForeground(Color.darkGray); 
 
         setTitle("AccountSignup | SwipeNews");
         getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -34,37 +34,37 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
      Text2.setFont(new Font("Leelawadee UI", Font.BOLD, 14));
      Text2.setForeground(Color.BLACK);
 
-     Logo = new JLabel(new ImageIcon("./icon/logo.png"));//เพิ่มรูปภาพล็อก
+     Logo = new JLabel(new ImageIcon("./icon/logoW.png"));//เพิ่มรูปภาพล็อก
          add(Logo);
-         Logo.setBounds(20,-30,512,512);
+         Logo.setBounds(-15,20,512,512);
          //ปรับขนาดภาพ
-         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logo.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH))); 
+         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logoW.png").getImage().getScaledInstance(450, 450, Image.SCALE_SMOOTH))); 
      
 
      //เนิ้อหาย่อยๆ
      textPanel2 = new JLabel("<html>One uppercase letter (A–Z)<br>One lowercase letter (a–z)<br>One number (0–9)<br>One special character (!@#$%^&* or similar)</html>");
      textPanel2.setFont(new Font("Leelawadee UI", Font.PLAIN, 12));
      textPanel2.setForeground(Color.BLACK);
-     textPanel2.setBounds(30, 135, 240, 60);
+     
     
         
    
 
-    setTitle("AccountSignup | SwipeNews");
+    setTitle("AccountSignUp | SwipeNews");
     getContentPane().setBackground(Color.LIGHT_GRAY);
     setLayout(null);
 
     
     // สร้างpanelทางซ้าย ก้คือpanel2
     panel2 = new setRoundedPanel(50);
-    panel2.setLayout(null); 
-    panel2.setBackground(Color.WHITE);
+    panel2.setLayout(null);; 
+    panel2.setBackground(new Color(200, 255, 220));
     
 
     
     panel = new setRoundedPanel(20);
     panel.setLayout(null);
-    panel.setBackground(Color.WHITE);
+    panel.setBackground(new Color(200, 255, 220));
     
         
 
@@ -76,34 +76,42 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         lbPass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
 
       
-        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
-       
+        login = new setRoundedbotton("Sign Up", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
+        login.setBackground(new Color(0, 153, 102)); // ปุ่มสีเขียวเข้ม
+        login.setForeground(Color.WHITE);//ตัวอักษรสีขาว
+
         //เพิ่ม backicon
         backicon = new JLabel(new ImageIcon("./icon/back.png"));
-        imageemail = new JLabel(new ImageIcon("./icon/email.png"));
+        ImageIcon emailI = new ImageIcon("./icon/email2.png");
+        Image scaledemail= emailI.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageemail = new JLabel(new ImageIcon(scaledemail));
+        imageemail.setOpaque(false);
+        
         
 
-        email = new setJTextField();
-        email.setFont("Tahoma", Font.PLAIN, 16);
-        email.setFieldSize(180, 28);
+        email = new RoundedTextField(20); // 20 = จำนวน columns
+        email.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        email.setBackground(Color.WHITE);
+        email.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
 
-        user = new setJTextField();
-        user.setFont("Tahoma", Font.PLAIN, 16);
-        user.setFieldSize(180, 28);
+        user = new RoundedTextField(20); // 20 = จำนวน columns
+        user.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        user.setBackground(Color.WHITE);
+        user.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
 
-        pass = new setPasswordField();          
-        pass.setFont("Tahoma", Font.PLAIN, 16);
-        pass.setFieldSize(180, 28);
-        pass.showPassword(false);  // เริ่มซ่อน 
+        pass = new RoundedPasswordField(20); // 20 = จำนวน columns
+        pass.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        pass.setBackground(Color.WHITE);
+        pass.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
 
-        conpass = new setPasswordField();
-        conpass.setFont("Tahoma", Font.PLAIN, 16);
-        conpass.setFieldSize(180, 28);
-        conpass.showPassword(false);  // เริ่มซ่อน           
+        conpass = new RoundedPasswordField(20); // 20 = จำนวน columns
+        conpass.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        conpass.setBackground(Color.WHITE);
+        conpass.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง        
 
         showpass = new JRadioButton("Show Password");
         showpass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
-        showpass.setBackground(Color.WHITE); 
+        showpass.setBackground(new Color(200, 255, 220)); 
         // การทำงานของปุ่ม Show Password
         showpass.addItemListener(new ItemListener() {
 
@@ -120,26 +128,38 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     login.addActionListener(this);
 
       
-       imageUser = new JLabel(new ImageIcon("./icon/user.png"));
-       imageLockpass = new JLabel(new ImageIcon("./icon/unlock.png"));
-       imageLockconpass = new JLabel(new ImageIcon("./icon/unlock.png"));
+        ImageIcon UserIcon = new ImageIcon("./icon/account.png");
+        Image scaledUser = UserIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageUser = new JLabel(new ImageIcon(scaledUser));
+        imageUser.setOpaque(false);
+        
+        ImageIcon lockIcon = new ImageIcon("icon/password.png");
+        Image scaledLockpass = lockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLockpass = new JLabel(new ImageIcon(scaledLockpass));
+        imageLockpass.setOpaque(false);
+
+        ImageIcon Iconpass = new ImageIcon("./icon/password.png");
+        Image scalesconpass = Iconpass.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLockconpass = new JLabel(new ImageIcon(scalesconpass));
+        imageLockconpass.setOpaque(false);
 
     // ตำแหน่ง (ใน panel ขวา)
-    user.setBounds(100, 110, 180, 30);
-    imageUser.setBounds(70, 110, 26, 26);
-    email.setBounds(100, 150, 180, 30);
-    imageemail.setBounds(65,150,30,30);
-    lbPass.setBounds(110, 180, 100, 22);
-    pass.setBounds(100, 190, 180, 30);
-    imageLockpass.setBounds(70, 190, 26, 26);
-    conpass.setBounds(100, 230, 180, 30);
-    imageLockconpass.setBounds(70, 230, 26, 26);
-    showpass.setBounds(130, 270, 160, 24);
-    login.setBounds(130, 320, 120, 40);
-    textsingup.setBounds(150, 35, 300, 40);
+    user.setBounds(120, 150, 180, 30);
+    imageUser.setBounds(70, 150, 30, 30);
+    email.setBounds(120, 200, 180, 30);
+    imageemail.setBounds(70,200,30,30);
+    lbPass.setBounds(110, 200, 100, 22);
+    pass.setBounds(120, 250, 180, 30);
+    imageLockpass.setBounds(70, 250, 30, 30);
+    conpass.setBounds(120, 300, 180, 30);
+    imageLockconpass.setBounds(70, 300, 30, 30);
+    showpass.setBounds(120, 340, 160, 24);
+    login.setBounds(130, 400, 120, 40);//ปุ่มSign in
+    textsingup.setBounds(80, 30, 300, 90);
     backicon.setBounds(10, 460, 26, 26);
-    Text2.setBounds(30, 115, 260, 20);
-    panel2.setBounds(125, 360, 300, 210);
+    Text2.setBounds(30, 5, 260, 20);
+    panel2.setBounds(95, 475, 300, 100);
+    textPanel2.setBounds(30, 30, 240, 60);
     
     panel.setBounds(500,75, 400, 500);
 

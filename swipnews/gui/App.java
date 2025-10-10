@@ -24,12 +24,12 @@ public class App extends popup  implements MouseListener {
         setLayout(new GridBagLayout()); // ให้อยู่กลางหน้าต่าง
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน่งเอง
-        panel.setBackground(Color.WHITE); // เปลี่ยนสีพื้นหลังของ panel
+        panel.setBackground(new Color(200, 255, 220)); // เปลี่ยนสีพื้นหลังของ panel
         panel.setPreferredSize(new Dimension(550, 600)); // กำหนดขนาด panel
 
         menu_panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         menu_panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน
-        menu_panel.setBackground(Color.LIGHT_GRAY); // เปลี่ยนสีพื้นหลังของ panel
+        menu_panel.setBackground(Color.white); // เปลี่ยนสีพื้นหลังของ panel
         menu_panel.setBounds(145, 535, 240, 60); // x, y, width, height
 
         //เพิ่มข้อความ
@@ -41,9 +41,21 @@ public class App extends popup  implements MouseListener {
         text_write.setFont(new Font("Leelawadee UI", Font.BOLD, 12));
 
         //เพิ่มรูป
-        imageFeednews = new JLabel(new ImageIcon("./icon/newsfeed.png"));//เพิ่มรูปภาพ newsfeed
-        imgewrite = new JLabel(new ImageIcon("./icon/write.png"));//เพิ่มรูปภาพ write
-        imagehistory = new JLabel(new ImageIcon("./icon/history.png"));//เพิ่มรูปภาพ history
+        ImageIcon feedIc = new ImageIcon("./icon/web-content.png");//เพิ่มรูปภาพ newsfeed
+        Image scaledfeed = feedIc.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageFeednews = new JLabel(new ImageIcon(scaledfeed));
+        imageFeednews.setOpaque(false);
+
+        ImageIcon writeIC = new ImageIcon("./icon/write2.png");
+        Image scaledwrite = writeIC.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imgewrite = new JLabel(new ImageIcon(scaledwrite));//เพิ่มรูปภาพ write
+        imgewrite.setOpaque(false);
+
+        ImageIcon hisIC = new ImageIcon("./icon/history2.png");
+        Image scaledhis = hisIC.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imagehistory = new JLabel(new ImageIcon(scaledhis));
+        imagehistory.setOpaque(false);
+        
             
 
         // ตั้งค่าให้เมาส์เป็นรูปมือเมื่อชี้ที่ปุ่มเมนู

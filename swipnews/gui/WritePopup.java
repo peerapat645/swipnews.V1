@@ -80,7 +80,7 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         
         mainPanel.setBackground(new Color(200, 255, 220));
         mainPanel.setPreferredSize(new Dimension(800, 500));
-        mainPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 168, 104), 20, true));
+        mainPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 168, 104), 15, true));
         backgroundPanel.add(mainPanel, BorderLayout.CENTER);
 
         backgroundPanel.add(mainPanel);
@@ -130,7 +130,7 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
                 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         topicscroll.setPreferredSize(new Dimension(500, 40));
-        topicscroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 3));
+        topicscroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 0));
 
         topicPanel.add(topicscroll);
 
@@ -195,8 +195,8 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
     contentArea.setLineWrap(true); 
     contentArea.setWrapStyleWord(true); 
     contentArea.setFont(new Font("Tahoma", Font.PLAIN, 16)); 
-    contentArea.setBackground(Color.WHITE); 
-    contentArea.setBorder(BorderFactory.createEmptyBorder(100, 10, 0, 10)); 
+    contentArea.setBackground(Color.white); 
+    contentArea.setBorder(BorderFactory.createEmptyBorder(5, 10, 0, 10)); 
         
     
     
@@ -204,7 +204,7 @@ public class WritePopup extends JFrame implements MouseListener, MouseMotionList
         JScrollPane scroll = new JScrollPane(contentArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
      JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
      scroll.setPreferredSize(new Dimension(550, 125)); 
-     scroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 3)); 
+     scroll.setBorder(new RoundedBorder(20, new Color(0, 168, 104), 0)); 
     contentPanel.add(scroll);
 
 

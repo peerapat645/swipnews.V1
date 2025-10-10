@@ -12,13 +12,13 @@ public class FullNewsPopup extends popup {
     
     public FullNewsPopup(NewsItem news) {
         this.news = news;
-        setSize(1000, 1000);
+        setSize(1000, 900);
         setTitle(news.getTopic());
         setLocationRelativeTo(null);
         
         setRoundedPanel mainPanel = new setRoundedPanel(20);
         mainPanel.setLayout(null);
-        mainPanel.setBounds(40, 20, 900, 900);
+        mainPanel.setBounds(40, 20, 1000, 900);
         
         // หัวข้อข่าว
         JLabel titleLabel = new JLabel(news.getTopic());
