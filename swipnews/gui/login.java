@@ -14,8 +14,8 @@ public class login extends popup implements MouseListener{
 
     private setRoundedPanel panel;
     private setRoundedbotton login;
-    private setJTextField username;
-    private setPasswordField password;
+    private RoundedTextField username;
+    private RoundedPasswordField password;
     private JLabel label_signin;
     private JLabel label_wallcome;
     private JLabel plsuser_password;
@@ -57,20 +57,18 @@ public class login extends popup implements MouseListener{
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Sign in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
+        login.setBackground(Color.white); // เปลี่ยนสีปุ่ม login
         //เพิ่มขีด label_adminและ signup
         botton_admin = new JLabel("<html><u>Login as admin</u></html>");
         botton_signup = new JLabel("<html><u>Signup</u></html>");
 
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
-        username = new setJTextField(); // สร้าง JTextField สำหรับชื่อผู้ใช้
-        username.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        username.setFieldSize(200, 30); // กำหนดขนาดของ JTextField
-        
+        username = new RoundedTextField(20); // สร้าง JTextField สำหรับชื่อผู้ใช้
+        username.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
 
         //เพิ่ม JpasswordField สำหรับรหัสผ่าน
-        password = new setPasswordField(); // สร้าง JTextField สำหรับรหัสผ่าน
-        password.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        password.setFieldSize(180, 28);// กำหนดขนาดของ JTextField
+        password = new RoundedPasswordField(20); // สร้าง JTextField สำหรับรหัสผ่าน
+        password.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
         password.showPassword(false); // เริ่มต้นซ่อนรหัสผ่าน
         
         //เพิ่ม ปุ่ม showePassword และการทำงาน

@@ -14,8 +14,8 @@ public class adminLogin extends popup implements MouseListener {
 
     private setRoundedPanel panel;
     private setRoundedbotton login;
-    private setJTextField username;
-    private setPasswordField password;
+    private RoundedTextField username;
+    private RoundedPasswordField password;
     private JLabel label_login;
     private JLabel plsuser_password;
     private JLabel imageLabelLock;
@@ -42,17 +42,16 @@ public class adminLogin extends popup implements MouseListener {
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
+        login.setBackground(Color.white); // เปลี่ยนสีปุ่ม login
 
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
-        username = new setJTextField(); // สร้าง JTextField สำหรับชื่อผู้ใช้
-        username.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        username.setFieldSize(200, 30); // กำหนดขนาดของ JTextField
+        username = new RoundedTextField(20); // สร้าง JTextField สำหรับชื่อผู้ใช้
+        username.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
         imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
 
         //เพิ่ม jJpasswordField สำหรับรหัสผ่าน
-        password = new setPasswordField(); // สร้าง JTextField สำหรับรหัสผ่าน
-        password.setFont("Tahoma", Font.PLAIN, 18); // เปลี่ยนฟอนต์ไทยและขนาด
-        password.setFieldSize(180, 28);// กำหนดขนาดของ JTextField
+        password = new RoundedPasswordField(20); // สร้าง JTextField สำหรับรหัสผ่าน
+        password.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
         password.showPassword(false); // เริ่มต้นซ่อนรหัสผ่าน
         imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
         

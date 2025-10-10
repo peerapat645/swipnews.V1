@@ -8,8 +8,8 @@ import gui.set.*;
 public class AccountSignup extends popup implements ActionListener, MouseListener {
 
     private setRoundedPanel panel2;
-    private setJTextField user , email ;          
-    private setPasswordField pass , conpass;      
+    private RoundedTextField user , email ;          
+    private RoundedPasswordField pass , conpass;      
     private JLabel lbUser, lbPass, textsingup ,backicon, textPanel2;
     private JPanel panel ;
     private JLabel imageUser, imageLockpass, imageLockconpass,imageemail;
@@ -75,30 +75,27 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         lbPass = new JLabel();
         lbPass.setFont(new Font("Leelawadee UI", Font.PLAIN, 14));
 
-      
-        login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
-       
+        login = new setRoundedbotton("complete", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ปุ่ม
+        login.setBackground(Color.WHITE); // เปลี่ยนสีปุ่ม login
+
         //เพิ่ม backicon
         backicon = new JLabel(new ImageIcon("./icon/back.png"));
         imageemail = new JLabel(new ImageIcon("./icon/email.png"));
         
 
-        email = new setJTextField();
-        email.setFont("Tahoma", Font.PLAIN, 16);
-        email.setFieldSize(180, 28);
+        email = new RoundedTextField(20);
+        email.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-        user = new setJTextField();
-        user.setFont("Tahoma", Font.PLAIN, 16);
-        user.setFieldSize(180, 28);
+        user = new RoundedTextField(20);
+        user.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-        pass = new setPasswordField();          
-        pass.setFont("Tahoma", Font.PLAIN, 16);
-        pass.setFieldSize(180, 28);
+        pass = new RoundedPasswordField(20);
+        pass.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
         pass.showPassword(false);  // เริ่มซ่อน 
 
-        conpass = new setPasswordField();
-        conpass.setFont("Tahoma", Font.PLAIN, 16);
-        conpass.setFieldSize(180, 28);
+        conpass = new RoundedPasswordField(20);
+        conpass.setFont(new Font("Tahoma", Font.PLAIN, 16));
         conpass.showPassword(false);  // เริ่มซ่อน           
 
         showpass = new JRadioButton("Show Password");
@@ -128,7 +125,7 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
     user.setBounds(100, 110, 180, 30);
     imageUser.setBounds(70, 110, 26, 26);
     email.setBounds(100, 150, 180, 30);
-    imageemail.setBounds(65,150,30,30);
+    imageemail.setBounds(68,150,30,30);
     lbPass.setBounds(110, 180, 100, 22);
     pass.setBounds(100, 190, 180, 30);
     imageLockpass.setBounds(70, 190, 26, 26);
