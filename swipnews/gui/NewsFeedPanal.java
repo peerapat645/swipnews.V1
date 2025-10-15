@@ -35,7 +35,7 @@ public NewsFeedPanal(String userId) {
     super(20);
     this.currentUserId = userId;
     this.setLayout(null);
-    this.setBackground(Color.white);
+    this.setBackground(new Color(255,255,255));
     this.setBounds(20, 20, 510, 510);
     this.addMouseListener(this);
     this.addMouseMotionListener(this);
@@ -358,5 +358,4 @@ private void loadImage(int newsId) {
 
     
     
-
 

@@ -24,7 +24,7 @@ public class App extends popup  implements MouseListener {
         setLayout(new GridBagLayout()); // ให้อยู่กลางหน้าต่าง
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน่งเอง
-        panel.setBackground(new Color(200, 255, 220)); // เปลี่ยนสีพื้นหลังของ panel
+        panel.setBackground(new Color(224, 242, 241)); // เปลี่ยนสีพื้นหลังของ panel
         panel.setPreferredSize(new Dimension(550, 600)); // กำหนดขนาด panel
 
         menu_panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม

@@ -33,7 +33,7 @@ public class RoundedTextField extends JTextField {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // วาดเส้นขอบมน
-        g2.setColor(Color.GRAY);
+        g2.setColor(new Color(200, 200, 200));
         g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight));
 
         g2.dispose();
