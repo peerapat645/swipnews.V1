@@ -32,7 +32,7 @@ public class WritePopup extends JFrame {
         // อ่านค่า nextNewsId จากไฟล์
         try {
             java.io.BufferedReader reader = new java.io.BufferedReader(
-                new java.io.FileReader("./File/accout/news/news.csv"));
+                new java.io.FileReader("./File/accout/news/news.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
@@ -246,7 +246,7 @@ public class WritePopup extends JFrame {
         }
 
         try {
-            java.io.FileWriter fw = new java.io.FileWriter("./File/accout/news/news.csv", true);
+            java.io.FileWriter fw = new java.io.FileWriter("./File/accout/news/news.txt", true);
             java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
 
             topic = topic.replace(",", ";").replace("\n", " ").replace("\r", "");

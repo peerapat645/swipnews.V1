@@ -1,6 +1,6 @@
 package gui.set;
 
-import javax.swing.BorderFactory;
+
 import javax.swing.JTextField;
 
 

@@ -107,7 +107,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         userNews.clear();
         if (isShowingWrittenNews == true) {
             // โหลดข่าวที่เขียน
-            try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.csv"))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.txt"))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -135,8 +135,8 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
                     String[] parts = line.split(",");
                     if (parts.length >= 2 && parts[0].equals(currentUserId)) {
                         int newsId = Integer.parseInt(parts[1]);
-                        // โหลดรายละเอียดข่าวจาก news.csv
-                        try (BufferedReader newsReader = new BufferedReader(new FileReader("./File/accout/news/news.csv"))) {
+                        // โหลดรายละเอียดข่าวจาก news.txt
+                        try (BufferedReader newsReader = new BufferedReader(new FileReader("./File/accout/news/news.txt"))) {
                             String newsLine;
                             while ((newsLine = newsReader.readLine()) != null) {
                                 String[] newsParts = newsLine.split(",");
@@ -194,7 +194,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         try {
             // อ่านไฟล์ข่าวทั้งหมด
             ArrayList<String> remainingNews = new ArrayList<>();
-            BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -205,7 +205,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             reader.close();
 
             // เขียนข่าวที่เหลือกลับลงไฟล์
-            FileWriter writer = new FileWriter("./File/accout/news/news.csv");
+            FileWriter writer = new FileWriter("./File/accout/news/news.txt");
             for (String news : remainingNews) {
                 writer.write(news + "\n");
             }

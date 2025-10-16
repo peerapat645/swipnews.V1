@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.io.File;
 import javax.imageio.ImageIO;
 import gui.set.setRoundedPanel;
-
+ 
 public class Photol extends setRoundedPanel {
     private Image currentImage = null;
     private int newsId = -1;

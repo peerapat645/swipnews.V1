@@ -78,7 +78,7 @@ public NewsFeedPanal(String userId) {
 // โหลดข่าวจากไฟล์ CSV
 private void loadNews() {
     allNews.clear();
-    try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.csv"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");

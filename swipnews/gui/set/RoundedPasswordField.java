@@ -14,7 +14,7 @@ public class RoundedPasswordField extends JPasswordField {
         setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // เว้นระยะขอบใน
     }
 
-    @Override
+    @Override 
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -27,7 +27,7 @@ public class RoundedPasswordField extends JPasswordField {
         g2.dispose();
     }
 
-    @Override
+    @Override 
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
