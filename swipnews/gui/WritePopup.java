@@ -102,8 +102,8 @@ public class WritePopup extends JFrame {
         centerPanel.setOpaque(false);
         
         // ✅ สร้างกรอบสีขาวขอบโค้ง (เหมือนกล่องล็อกอิน)
-        RoundedPanel whiteBox = new RoundedPanel(30);
-        whiteBox.setBackgroundColor(new Color(255, 255, 255, 230)); // สีขาวโปร่งนิด ๆ
+        setRoundedPanel whiteBox = new setRoundedPanel(30);
+        //whiteBox.setBackgroundColor(new Color(255, 255, 255, 230)); // สีขาวโปร่งนิด ๆ
         whiteBox.setPreferredSize(new Dimension(730, 670));
         whiteBox.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // ขอบใน (padding)
         whiteBox.add(centerPanel, BorderLayout.CENTER);
@@ -212,7 +212,7 @@ public class WritePopup extends JFrame {
         confirmBtn.setFocusPainted(false);
         confirmBtn.setPreferredSize(new Dimension(120, 50));
 
-        JPanel confirmPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        JPanel confirmPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         confirmPanel.setOpaque(false);
         confirmPanel.add(confirmBtn);
 

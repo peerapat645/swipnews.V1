@@ -310,16 +310,16 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         String confirm = new String(conpass.getPassword());
         String emailText = email.getText();
         if (username.isEmpty() || password.isEmpty() || confirm.isEmpty() || emailText.isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "กรุณากรอกข้อมูลให้ครบถ้วน", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "Please fill in all the information completely.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!password.equals(confirm)) {
-            JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ตรงกัน", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "Passwords do not match", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
          // บังคับ @gmail.com 
     if (!isGmail(emailText)) {
-        JOptionPane.showMessageDialog(panel, "อีเมลต้องเป็น @gmail.com เท่านั้น ไปใส่มาใหม่", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(panel, "The email must be @gmail.com only. Please enter it again.", "Error", JOptionPane.ERROR_MESSAGE);
         email.requestFocus();
         return;
         }
@@ -328,14 +328,14 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         PasswordValidatorCase.PasswordStrength strength = PasswordValidatorCase.validate(password);
         switch (strength) {
             case INVALID:
-                JOptionPane.showMessageDialog(panel, "รหัสผ่านไม่ถูกต้อง: ต้องมีอย่างน้อย 8 ตัวอักษร", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(panel, "Incorrect password: must be at least 8 characters long", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             case WEAK:
-                JOptionPane.showMessageDialog(panel, "รหัสผ่านอ่อน: กรุณาใช้ตัวอักษรผสมตัวเลข หรือเพิ่มความยาวให้มากขึ้น", "คำเตือน", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(panel, "Weak password: Please use a combination of letters and numbers, or increase the length.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             case MEDIUM:
                 // ยอมรับได้ แต่แจ้งเตือนให้ผู้ใช้ทราบ
-                int confirmMedium = JOptionPane.showConfirmDialog(panel, "รหัสผ่านระดับกลาง — ต้องการใช้รหัสผ่านนี้หรือไม่?", "ยืนยันรหัสผ่าน", JOptionPane.YES_NO_OPTION);
+                int confirmMedium = JOptionPane.showConfirmDialog(panel, "Medium-level password — Do you want to use this password?", "Confirm password", JOptionPane.YES_NO_OPTION);
                 if (confirmMedium != JOptionPane.YES_OPTION) return;
                 break;
             case STRONG:
@@ -351,9 +351,9 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
             java.io.FileWriter emailfw = new java.io.FileWriter("./File/accout/email.csv", true);
             emailfw.write("\n"+emailText);
             emailfw.close();
-            JOptionPane.showMessageDialog(panel, "สมัครสมาชิกสำเร็จ!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(panel, "เกิดข้อผิดพลาดในการบันทึกข้อมูล", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "An error occurred while saving the data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -382,15 +382,18 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
                 reader.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการอ่านไฟล์บัญชีผู้ใช้", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "An error occurred while reading the user account file", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (found) {
                new App(inputPass).setVisible(true);
                 this.dispose();
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "The username or password is incorrect.!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
+            //ปิดหน้านี้แล้วเข้าหน้า login
+            new login().setVisible(true);
+            this.dispose();
         }
     }
 
