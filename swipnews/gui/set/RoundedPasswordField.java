@@ -36,7 +36,7 @@ public class RoundedPasswordField extends JPasswordField {
         if (hasFocus()) {
             g2.setColor(new Color(66, 133, 244)); // ขอบน้ำเงินเมื่อโฟกัส
         } else {
-            g2.setColor(Color.GRAY);
+            g2.setColor(Color.DARK_GRAY);
         }
         g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight));
         g2.dispose();

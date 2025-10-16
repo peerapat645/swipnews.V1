@@ -35,7 +35,7 @@ public NewsFeedPanal(String userId) {
     super(20);
     this.currentUserId = userId;
     this.setLayout(null);
-    this.setBackground(new Color(245, 245, 245));
+    this.setBackground(new Color(255,255,255));
     this.setBounds(20, 20, 510, 510);
     this.addMouseListener(this);
     this.addMouseMotionListener(this);
@@ -59,7 +59,7 @@ public NewsFeedPanal(String userId) {
     // สร้าง Label สำหรับแสดงหมวดหมู่ที่เลือก
     categoryLabel = new JLabel("Category: " + selectedCategory);
     categoryLabel.setFont(new java.awt.Font("Leelawadee UI", java.awt.Font.BOLD, 14));
-    categoryLabel.setBounds(380, 10, 150, 30);
+    categoryLabel.setBounds(20, 10, 180, 30);
     categoryLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     categoryLabel.addMouseListener(new MouseAdapter() {
         @Override
@@ -310,7 +310,7 @@ private void loadImage(int newsId) {
             markNewsAsRead(current.getId());
             
             // อัพเดตรายการข่าวและข้ามไปข่าวถัดไป
-           // updateFilteredNews();
+            updateFilteredNews();
         }
     }
 // เลือกหมวดหมู่และอัปเดตรายการข่าว

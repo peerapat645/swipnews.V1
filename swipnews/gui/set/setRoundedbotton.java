@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class setRoundedbotton extends JButton {
+    public static final Component POPUP_LAYER = null;
     private int cornerRadius;
 
     public setRoundedbotton(String text, int radius) {
@@ -20,12 +21,6 @@ public class setRoundedbotton extends JButton {
 
     public void setButtonFont(Font font) {
         setFont(font);
-    }
-
-    public void setButtonBackgroundColor(Color color) {
-        setBackground(color);
-        //สีเริมต้นของปุ่ม
-        setForeground(Color.WHITE); // สีตัวอักษรของปุ่ม
     }
     @Override
     protected void paintComponent(Graphics g) {

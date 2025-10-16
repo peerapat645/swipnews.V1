@@ -16,6 +16,7 @@ public class login extends popup implements MouseListener{
     private setRoundedbotton login;
     private RoundedTextField username;
     private RoundedPasswordField password;
+    private JLabel labelSwipeNew;
     private JLabel label_signin;
     private JLabel label_wallcome;
     private JLabel plsuser_password;
@@ -37,40 +38,93 @@ public class login extends popup implements MouseListener{
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
         panel.setLayout(null); // ใช้ null layout เพื่อกำหนดตำแหน่งเอง
         panel.setBounds(490, 80, 400, 500);//กำหนดตำแหน่ง panel
-        panel.setBackground(new Color(255, 255, 255)); // เปลี่ยนสีพื้นหลังของ panel
+        panel.setBackground(Color.WHITE); // เปลี่ยนสีพื้นหลังของ panel
         panel.setPreferredSize(new Dimension(400, 500)); // กำหนดขนาด panel
 
         //เพิ่มตัวอักษร 
+        labelSwipeNew = new JLabel("SwipeNews");
+        labelSwipeNew.setFont(new Font("Leelawadee UI", Font.BOLD, 48));
+        labelSwipeNew.setForeground(Color.darkGray);
+
         label_signin = new JLabel("Sign In");
-        label_signin.setFont(new Font("Leelawadee UI", Font.BOLD, 28)); // เปลี่ยนฟอนต์ไทยและขนาด
-        plsuser_password = new JLabel("Please enter the user password");
-        plsuser_password.setFont(new Font("Leelawadee UI", Font.PLAIN, 16)); // เปลี่ยนฟอนต์ไทยและขนาด
-        plsuser_password.setForeground(Color.gray); // เปลี่ยนสีข้อความเป็นสีเทา
+        label_signin.setFont(new Font("Leelawadee UI", Font.BOLD, 60)); // เปลี่ยนฟอนต์ไทยและขนาด
 
-        label_wallcome = new JLabel("Welcome");
+        plsuser_password = new JLabel("Please enter the User and Password");
+        plsuser_password.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
+        plsuser_password.setForeground(Color.darkGray); // เปลี่ยนสีข้อความเป็นสีเทา
+
+        label_wallcome = new JLabel("SwipeNews");
         label_wallcome.setFont(new Font("SansSerif", Font.BOLD, 60)); 
-
+        label_wallcome.setForeground(Color.WHITE);
 
         //เพิ่มตัวอักษร dout have accout
-        dout_have_accout = new JLabel("doun't have an accout ");
+        dout_have_accout = new JLabel("don't have an accout? ");
         dout_have_accout.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Sign in", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
-        login.setBackground(Color.white); // เปลี่ยนสีปุ่ม login
+        login.setBackground(new Color(0, 153, 102)); // ปุ่มสีเขียวเข้ม
+        login.setForeground(Color.WHITE);//ตัวอักษรสีขาว  
         //เพิ่มขีด label_adminและ signup
-        botton_admin = new JLabel("<html><u>Login as admin</u></html>");
-        botton_signup = new JLabel("<html><u>Signup</u></html>");
+        botton_admin = new JLabel("<html><u>Login In as admin</u></html>");
+        botton_signup = new JLabel("<html><u>Sign Up</u></html>");
+        
 
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
-        username = new RoundedTextField(20); // สร้าง JTextField สำหรับชื่อผู้ใช้
-        username.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
+        username = new RoundedTextField(20); // 20 = จำนวน columns
+        username.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        username.setBackground(Color.WHITE);
+        username.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
 
-        //เพิ่ม JpasswordField สำหรับรหัสผ่าน
-        password = new RoundedPasswordField(20); // สร้าง JTextField สำหรับรหัสผ่าน
-        password.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
-        password.showPassword(false); // เริ่มต้นซ่อนรหัสผ่าน
+        username.addFocusListener(new FocusAdapter() {
+        @Override
+            public void focusGained(FocusEvent e) {
+                if (username.getText().equals("Username")) {
+                    username.setText("");
+                    username.setForeground(Color.black);
+                }
+            }
+
+        @Override
+            public void focusLost(FocusEvent e) {
+                if (username.getText().isEmpty()) {
+                    username.setText("Username");
+                    username.setForeground(Color.GRAY);
+                }
+            }
+        });
+
         
+        //เพิ่ม JpasswordField สำหรับรหัสผ่าน
+        password = new RoundedPasswordField(20); // 20 = จำนวน columns
+        password.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        password.setText("Password");
+        password.setBackground(Color.WHITE);
+        password.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
+
+        // ตอนเริ่มให้โชว์ตัวอักษร (ยังไม่ซ่อน)
+        password.setEchoChar((char) 0);
+        password.setForeground(Color.gray);
+        password.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            if (String.valueOf(password.getPassword()).equals("Password")) {
+                password.setText("");
+                password.setForeground(Color.black);
+                password.setEchoChar('•'); // เริ่มซ่อนตอนพิมพ์
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            if (String.valueOf(password.getPassword()).isEmpty()) {
+                password.setText("Password");
+                password.setForeground(Color.GRAY);
+                password.setEchoChar((char) 0); // กลับมาแสดงตัวอักษรถ้าไม่ได้พิมพ์
+            }
+        }
+        });
+
         //เพิ่ม ปุ่ม showePassword และการทำงาน
         showePassword = new JRadioButton("Show Password"); 
         showePassword.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
@@ -86,35 +140,47 @@ public class login extends popup implements MouseListener{
 
         //เพิ่ม รูป
         //backicon = new JLabel(new ImageIcon("./icon/back.png"));//เพิ่มรูปภาพล็อก
-        imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
-        imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
-        Logo = new JLabel(new ImageIcon("./icon/logo.png"));//เพิ่มรูปภาพล็อก
+        //PasswordIcon
+        ImageIcon lockIcon = new ImageIcon("icon/password.png");
+        Image scaledLock = lockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelLock = new JLabel(new ImageIcon(scaledLock));
+        imageLabelLock.setOpaque(false);
+        //UserIcon
+        ImageIcon userIcon = new ImageIcon("icon/account.png");
+        Image scaledUser = userIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelUser = new JLabel(new ImageIcon(scaledUser));
+        imageLabelUser.setOpaque(false);    
+        
+        Logo = new JLabel(new ImageIcon("./icon/logoW.png"));//เพิ่มรูปภาพlogo
          add(Logo);
-         Logo.setBounds(-10,150,512,512);
+         
          //ปรับขนาดภาพ
-         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logo.png").getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH)));
+         Logo.setIcon(new ImageIcon(new ImageIcon("./icon/logoW.png").getImage().getScaledInstance(450, 450, Image.SCALE_SMOOTH)));
+        
 
 
         //ปรับตำแหน่งปุ่มและขนาด
-        label_signin.setBounds(155, 35, 300, 40); // x, y, width, height 
-        plsuser_password.setBounds(100, 70, 300, 40); // x, y, width, height
-        username.setBounds(100, 150, 210, 30); // x, y, width, height
-        password.setBounds(100, 200, 210, 30); // x, y, width, height
-        login.setBounds(150, 310, 100, 40); // x, y, width, height
-        showePassword.setBounds(140, 240, 120, 30); // x, y, width, height
-        imageLabelUser.setBounds(60, 150, 26, 26); // x, y, width, height
-        imageLabelLock.setBounds(60, 200, 26, 26); // x, y, width, height
+        labelSwipeNew.setBounds(70, 35, 300, 60);
+        label_signin.setBounds(100, 35, 300, 80); // x, y, width, height 
+        plsuser_password.setBounds(90, 140, 300, 40); // x, y, width, height
+        username.setBounds(100, 200, 210, 30); // x, y, width, height
+        password.setBounds(100, 260, 210, 30); // x, y, width, height
+        login.setBounds(140, 350, 100, 40); // x, y, width, height
+        showePassword.setBounds(100, 290, 200, 30); // x, y, width, height
+        imageLabelUser.setBounds(60, 200, 30, 30); // x, y, width, height
+        imageLabelLock.setBounds(60, 260, 30, 30); // x, y, width, height
         //backicon.setBounds(10, 360, 26, 26); // x, y, width, height
         botton_admin.setBounds(10, 450, 150, 30); // x, y, width, height
          botton_admin.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
         botton_signup.setBounds(155, 420, 100, 30); // x, y, width, height
          botton_signup.setFont(new Font("Leelawadee UI", Font.PLAIN, 14)); // เปลี่ยนฟอนต์ไทยและขนาด
         dout_have_accout.setBounds(10, 420, 300, 30); // x, y, width, height 
-
-        label_wallcome.setBounds(100, 120, 300, 80); // x, y, width, height
+        label_wallcome.setBounds(75, 90, 500, 80); // x, y, width, height
+        Logo.setBounds(-10,130,512,512);
         
 
         //เพิ่มปุ่มลงใน panel
+        //panel.add(labelSwipeNew);
         panel.add(label_signin);
         panel.add(login);
         panel.add(username);
@@ -137,6 +203,14 @@ public class login extends popup implements MouseListener{
         //backicon.addMouseListener(this);
         botton_admin.addMouseListener(this);
         botton_signup.addMouseListener(this);
+        // ปิด focus เริ่มต้นของ searchField
+        addWindowListener(new WindowAdapter() {
+        @Override
+            public void windowOpened(WindowEvent e) {
+                panel.requestFocusInWindow();
+                }
+            });
+    
     }
 
     //การใช้ mouseClicked เพื่อตรวจสอบการคลิกปุ่ม login

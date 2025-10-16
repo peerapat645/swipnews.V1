@@ -29,16 +29,29 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         this.setBounds(0, 0, 550, 530);// กำหนดขนาด panel 
         this.addMouseListener(this);
 
+        
+
         // สร้าง panel สำหรับใส่เนื้อหา (เช่น ประวัติข่าว)
         contentPanel = new JPanel();
         contentPanel.setLayout(null);
         contentPanel.setBackground(Color.white);
-        contentPanel.setPreferredSize(new Dimension(480, 2500)); // กำหนดความสูงมากกว่าขนาดแสดงผลเพื่อให้ scroll ได้
+        contentPanel.setPreferredSize(new Dimension(480, 2500)); // กำหนดความสูงมากกว่าขนาดแสดงผลเพื่อให้ scroll 
+        
+        // ปุ่มสลับระหว่างข่าวที่เขียนกับข่าวที่อ่านที่อยู่ทับ scroll
+        
+        switchButton = new setRoundedbotton(isShowingWrittenNews ? "Switch to Read History" : "Switch to Written History", 15, new Font("Tahoma", Font.PLAIN, 12));
+        switchButton.setBackground(new Color(100, 149, 237));
+        switchButton.setForeground(Color.WHITE);
+        switchButton.setBounds(10, 500, 180, 30);
+        switchButton.addActionListener(e -> switchHistoryType());
+        this.add(switchButton);
+        
+
 
 
         // เพิ่ม JScrollPane
         JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setBounds(10, 10, 530, 520);
+        scrollPane.setBounds(10, 10, 530, 490); 
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         this.add(scrollPane);
@@ -49,8 +62,6 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         // จัดการแสดงผลข่าว
         displayNews();
 
-        // ปุ่มสลับระหว่างข่าวที่เขียนและข่าวที่อ่าน
-        //switchHistoryType();
 
         
     }
@@ -58,11 +69,12 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Object h = e.getSource();
-        int i = 0;
-        for (i = 0; i < histories.size(); i++) {
+         // ตรวจสอบว่าคลิกที่ข่าวหรือไม่
+        for (int i = 0; i < histories.size(); i++) {
             if (h == histories.get(i) && i < userNews.size()) {
                 // เปิดหน้า Full News เมื่อคลิกที่ข่าว
                 new FullNewsPopup(userNews.get(i));
+                System.out.println("userNews ID: " + userNews.get(i).getId());
                 break;
             }
         }
@@ -93,7 +105,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
 
     private void loadUserNews() {
         userNews.clear();
-        if (isShowingWrittenNews) {
+        if (isShowingWrittenNews == true) {
             // โหลดข่าวที่เขียน
             try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/news.csv"))) {
                 String line;
@@ -115,7 +127,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             } catch (IOException e) {
                 System.err.println("Error loading news: " + e.getMessage());
             }
-        } else {
+        } else if (isShowingWrittenNews == false) {
             // โหลดข่าวที่อ่าน
             try (BufferedReader reader = new BufferedReader(new FileReader("./File/accout/news/readHistory.csv"))) {
                 String line;
@@ -159,9 +171,9 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         displayNews();
         contentPanel.revalidate();
         contentPanel.repaint();
-        //เพิ่มปุ่มสลับ
-        switchButton = new setRoundedbotton(isShowingWrittenNews ? "Switch to Read History" : "Switch to Written History", 15, new Font("Tahoma", Font.PLAIN, 12));
-        switchButton.setBackground(new Color(100, 149, 237));
+
+
+
     }
 
     private void confirmDeleteNews(int newsId) {
@@ -202,7 +214,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
              // ลบประวัติการอ่านข่าวที่ถูกลบ
             FileWriter Del = new FileWriter("./File/accout/news/readHistory.csv");
             for (String history : remainingNews) {
-                Del.write(history + "\n");
+                Del.write(  "\n");
             }
             Del.close();
 
@@ -229,15 +241,18 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             JOptionPane.showMessageDialog(this, "Error deleting news: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
     // แสดงข่าว
     private void displayNews() {
         int gapY = 40;  // ระยะห่างแนวตั้ง
         int startY = 20; // จุดเริ่มต้นแนว Y
         int gapX = 40; // ระยะห่างแนวนอน
-        int startX = 25; // จุดเริ่มต้นแนว X
+        int startX = 10; // จุดเริ่มต้นแนว X
         int maxColumns = 2; // จำนวนคอลัมน์สูงสุด
 
         for (int i = 0; i < userNews.size(); i++) {
+            int j = i; // ตัวแปรช่วยสำหรับใช้ใน listener
             NewsItem news = userNews.get(i);
             int row = i / maxColumns;
             int col = i % maxColumns;
@@ -246,7 +261,14 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             history.setLayout(null);
             history.setBackground(new Color(240, 240, 240));
             history.setBounds(startX + col * (225 + gapX), startY + row * (225 + gapY), 225, 225);
-
+            history.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                        // เปิดข่าวเมื่อดับเบิลคลิก
+                        FullNewsPopup popup = new FullNewsPopup(userNews.get(j));
+                        popup.setVisible(true);
+                }
+            });
             // โหลดและแสดงรูปภาพ
             try {
                 File photoDir = new File("./File/accout/news/photo");
@@ -296,15 +318,18 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
             history.add(timeLabel);
 
             // เพิ่มปุ่มลบ
+            if (isShowingWrittenNews) {
             setRoundedbotton deleteBtn = new setRoundedbotton("Delete", 15, new Font("Tahoma", Font.PLAIN, 12));
             deleteBtn.setBackground(new Color(255, 100, 100));
             deleteBtn.setForeground(Color.WHITE);
             deleteBtn.setBounds(135, 190, 80, 25);
             deleteBtn.addActionListener(e -> confirmDeleteNews(news.getId()));
             history.add(deleteBtn);
+            }
             histories.add(history);
             contentPanel.add(history);
             history.addMouseListener(this);
+
         }
 
         // ปรับขนาด contentPanel ตามจำนวนข่าว
@@ -312,5 +337,7 @@ public class HistoryPanal extends setRoundedPanel implements MouseListener {
         contentPanel.setPreferredSize(new Dimension(480, startY + rows * (225 + gapY)));
         contentPanel.revalidate();
         contentPanel.repaint();
+
+        
     }
 }

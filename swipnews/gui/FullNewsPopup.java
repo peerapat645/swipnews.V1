@@ -12,18 +12,20 @@ public class FullNewsPopup extends popup {
     
     public FullNewsPopup(NewsItem news) {
         this.news = news;
-        setSize(1000, 1000);
+        setSize(1000, 900);
         setTitle(news.getTopic());
         setLocationRelativeTo(null);
+        setContentPane(new JLabel(new ImageIcon("./File/accout/news/photo/bg2.png")));
         
+        // แผงหลัก
         setRoundedPanel mainPanel = new setRoundedPanel(20);
         mainPanel.setLayout(null);
-        mainPanel.setBounds(40, 20, 900, 900);
+        mainPanel.setBounds(40, 20, 1000, 900);
         
         // หัวข้อข่าว
         JLabel titleLabel = new JLabel(news.getTopic());
         titleLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
-        titleLabel.setBounds(420, 10, 760, 30);
+        titleLabel.setBounds(20, 10, 760, 30);
         mainPanel.add(titleLabel);
 
         // รูปภาพ (ถ้ามี)
@@ -65,9 +67,9 @@ public class FullNewsPopup extends popup {
         contentArea.setWrapStyleWord(true);
         contentArea.setLineWrap(true);
         contentArea.setEditable(false);
-        contentArea.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        contentArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
         JScrollPane scrollPane = new JScrollPane(contentArea);
-        scrollPane.setBounds(30, 490, 850, 350);
+        scrollPane.setBounds(30, 490, 850, 200); 
         mainPanel.add(scrollPane);
 
         // ข้อมูลเพิ่มเติม
