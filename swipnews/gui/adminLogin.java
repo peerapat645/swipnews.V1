@@ -25,7 +25,7 @@ public class adminLogin extends popup implements MouseListener {
 
     public adminLogin() {
         super();
-        setTitle("AdminLogin | SwipNews"); // ตั้งชื่อหน้าต่าง
+        setTitle("AdminLogin | SwipeNews"); // ตั้งชื่อหน้าต่าง
         getContentPane().setBackground(Color.LIGHT_GRAY); // เปลี่ยนสีพื้นหลังของ login panel หลัก
         setLayout(new GridBagLayout()); // ให้อยู่กลางหน้าต่าง
         panel = new setRoundedPanel(20); // 20 คือความโค้งของมุม
@@ -42,18 +42,73 @@ public class adminLogin extends popup implements MouseListener {
 
         //เพิ่มปุ่ม login ลงใน panel
         login = new setRoundedbotton("Login", 20,new Font("Leelawadee UI", Font.BOLD, 18));//ชื่อปุ่ม, ความโค้ง, ฟอนต์
-        login.setBackground(Color.white); // เปลี่ยนสีปุ่ม login
-
+        login.setBackground(new Color(0, 153, 102)); // ปุ่มสีเขียวเข้ม
+        login.setForeground(Color.WHITE);//ตัวอักษรสีขาว
         //เพิ่ม JTextField สำหรับชื่อผู้ใช้
         username = new RoundedTextField(20); // สร้าง JTextField สำหรับชื่อผู้ใช้
-        username.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
-        imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
+        username.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        username.setBackground(Color.WHITE);
+        username.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
+        username.setText("Username");
+        username.setForeground(Color.gray);
+        username.addFocusListener(new FocusAdapter() {
+        @Override
+            public void focusGained(FocusEvent e) {
+                if (username.getText().equals("Username")) {
+                    username.setText("");
+                    username.setForeground(Color.black);
+                }
+            }
+
+        @Override
+            public void focusLost(FocusEvent e) {
+                if (username.getText().isEmpty()) {
+                    username.setText("Username");
+                    username.setForeground(Color.GRAY);
+                }
+            }
+        });
+        
+        ImageIcon lockIcon = new ImageIcon("icon/password.png");
+        Image scaledLockpass = lockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelLock = new JLabel(new ImageIcon(scaledLockpass));
+        imageLabelLock.setOpaque(false);
+        //imageLabelLock = new JLabel(new ImageIcon("./icon/unlock.png"));//เพิ่มรูปภาพล็อก
 
         //เพิ่ม jJpasswordField สำหรับรหัสผ่าน
-        password = new RoundedPasswordField(20); // สร้าง JTextField สำหรับรหัสผ่าน
-        password.setFont(new Font("Tahoma", Font.PLAIN, 18)); // เปลี่ยนฟอนต์ไทยและขนาด
+        password = new RoundedPasswordField(20); // 20 = จำนวน columns
+        password.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        password.setBackground(Color.WHITE);
+        password.setPreferredSize(new Dimension(200, 30)); // ตั้งขนาดช่อง
         password.showPassword(false); // เริ่มต้นซ่อนรหัสผ่าน
-        imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
+        password.setEchoChar((char) 0);
+        password.setText("Password");
+        password.setForeground(Color.gray);
+        password.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            if (String.valueOf(password.getPassword()).equals("Password")) {
+                password.setText("");
+                password.setForeground(Color.black);
+                password.setEchoChar('•'); // เริ่มซ่อนตอนพิมพ์
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            if (String.valueOf(password.getPassword()).isEmpty()) {
+                password.setText("Password");
+                password.setForeground(Color.GRAY);
+                password.setEchoChar((char) 0); // กลับมาแสดงตัวอักษรถ้าไม่ได้พิมพ์
+            }
+        }
+        });
+
+        ImageIcon UserIcon = new ImageIcon("./icon/account.png");
+        Image scaledUser = UserIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageLabelUser = new JLabel(new ImageIcon(scaledUser));
+        imageLabelUser.setOpaque(false);
+        //imageLabelUser = new JLabel(new ImageIcon("./icon/user.png"));//เพิ่มรูปภาพล็อก
         
         //เพิ่ม ปุ่ม showePassword และการทำงาน
         showePassword = new JRadioButton("Show Password"); 
@@ -78,8 +133,8 @@ public class adminLogin extends popup implements MouseListener {
         password.setBounds(80, 180, 170, 30); // x, y, width, height
         login.setBounds(100, 250, 100, 40); // x, y, width, height
         showePassword.setBounds(80, 210, 150, 30); // x, y, width, height
-        imageLabelUser.setBounds(40, 140, 26, 26); // x, y, width, height
-        imageLabelLock.setBounds(40, 180, 26, 26); // x, y, width, height
+        imageLabelUser.setBounds(40, 140, 30, 30); // x, y, width, height
+        imageLabelLock.setBounds(40, 180, 30, 30); // x, y, width, height
         backicon.setBounds(10, 360, 26, 26); // x, y, width, height
         
         
@@ -102,6 +157,13 @@ public class adminLogin extends popup implements MouseListener {
         // เพิ่ม MouseListener ให้ปุ่ม
         login.addMouseListener(this);
         backicon.addMouseListener(this);
+
+        addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowOpened(WindowEvent e) {
+            panel.requestFocusInWindow();
+            }
+        });
     }
 
     //การใช้ mouseClicked เพื่อตรวจสอบการคลิกปุ่ม login
@@ -120,7 +182,7 @@ public class adminLogin extends popup implements MouseListener {
             boolean found = false;
             try {
                 java.io.BufferedReader reader = new java.io.BufferedReader(
-                    new java.io.FileReader("./File/accout/Adminaccount.scr")); // ใช้ path ตรงกับ root project
+                    new java.io.FileReader("./File/accout/Adminaccount.csv")); // ใช้ path ตรงกับ root project
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
