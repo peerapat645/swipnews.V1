@@ -67,7 +67,7 @@ public class FullNewsPopup extends popup {
         contentArea.setWrapStyleWord(true);
         contentArea.setLineWrap(true);
         contentArea.setEditable(false);
-        contentArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        contentArea.setFont(new Font("Tahoma", Font.PLAIN, 16));
         JScrollPane scrollPane = new JScrollPane(contentArea);
         scrollPane.setBounds(30, 490, 850, 200); 
         mainPanel.add(scrollPane);
