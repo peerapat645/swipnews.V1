@@ -294,12 +294,15 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
 
 
         private static boolean isGmail(String s) {
-    if (s == null) return false;
-    String e = s.trim().toLowerCase(Locale.ROOT);
+    if (s == null ) return false;
+    String raw = s.trim();
+    // ทำหน้าที่ตรวจสอบตัวพิมพ์ใหญ่พิมพ์เล็ก
+    if (!raw.equals(raw.toLowerCase(Locale.ROOT))) return false;
+    String e = raw.toLowerCase(Locale.ROOT);
     // ต้องลงท้าย @gmail.com, มี @ แค่ตัวเดียว และไม่มีเว้นวรรค
     return e.endsWith("@gmail.com")
-           && e.indexOf('@') == e.lastIndexOf('@')
-           && !e.contains(" ");
+        && e.indexOf('@') == e.lastIndexOf('@')
+        && !e.contains(" ");
         }
 
 
@@ -344,6 +347,20 @@ public class AccountSignup extends popup implements ActionListener, MouseListene
         }
         // บันทึกข้อมูลลงไฟล์ useraccount.csv จะมี(username,password)
         try {
+            // ตรวจสอบชื่อผู้ใช้ซ้ำในไฟล์ useraccount.csv
+            java.io.BufferedReader checkReader = new java.io.BufferedReader(
+                new java.io.FileReader("./File/accout/useraccount.csv"));
+            String checkLine;
+            while ((checkLine = checkReader.readLine()) != null) {
+                String[] existing = checkLine.split(",");
+                if (existing.length >= 1 && existing[0].equals(username)) {
+                    checkReader.close();
+                    JOptionPane.showMessageDialog(panel, "Username already exists. Please choose another.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            checkReader.close();
+
             java.io.FileWriter fw = new java.io.FileWriter("./File/accout/useraccount.csv", true);
             fw.write("\n"+username + "," + password);
             fw.close();
