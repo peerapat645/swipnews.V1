@@ -101,14 +101,14 @@ public class WritePopup extends JFrame {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setOpaque(false);
         
-        // ✅ สร้างกรอบสีขาวขอบโค้ง (เหมือนกล่องล็อกอิน)
-        RoundedPanel whiteBox = new RoundedPanel(30);
-        whiteBox.setBackgroundColor(new Color(255, 255, 255, 230)); // สีขาวโปร่งนิด ๆ
+        //  สร้างกรอบสีขาวขอบโค้ง (เหมือนกล่องล็อกอิน)
+        setRoundedPanel whiteBox = new setRoundedPanel(30);
+        //whiteBox.setBackgroundColor(new Color(255, 255, 255, 230)); // สีขาวโปร่งนิด ๆ
         whiteBox.setPreferredSize(new Dimension(730, 670));
         whiteBox.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // ขอบใน (padding)
         whiteBox.add(centerPanel, BorderLayout.CENTER);
 
-        // ✅ ใช้ GridBagLayout เพื่อจัด whiteBox ให้อยู่กลางจอ
+        //  ใช้ GridBagLayout เพื่อจัด whiteBox ให้อยู่กลางจอ
         JPanel centerContainer = new JPanel(new GridBagLayout());
         centerContainer.setOpaque(false);
         centerContainer.add(whiteBox);
@@ -164,7 +164,7 @@ public class WritePopup extends JFrame {
         photoPanel.add(addPhotoBtn);
         photoPanel.add(photoPreview);
 
-        // ✅ Event: Add Photo
+        //  Event: Add Photo
         addPhotoBtn.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
@@ -212,7 +212,7 @@ public class WritePopup extends JFrame {
         confirmBtn.setFocusPainted(false);
         confirmBtn.setPreferredSize(new Dimension(120, 50));
 
-        JPanel confirmPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        JPanel confirmPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         confirmPanel.setOpaque(false);
         confirmPanel.add(confirmBtn);
 

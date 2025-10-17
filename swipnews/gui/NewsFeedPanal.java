@@ -13,6 +13,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.imageio.ImageIO;
 import java.awt.Color;
 
@@ -69,10 +71,11 @@ public NewsFeedPanal(String userId) {
     });
     this.add(categoryLabel);
 
-    // สร้าง Label สำหรับแสดงหมวดหมู่ที่เลือก
 
     // โหลดข่าวทั้งหมด
     loadNews();
+    // ดึงให้ข่าวแสดงจากใหม่ไปเก่า
+    Collections.sort(allNews, Comparator.comparing(NewsItem::getTimestamp).reversed());
     updateFilteredNews();
 }
 // โหลดข่าวจากไฟล์ CSV

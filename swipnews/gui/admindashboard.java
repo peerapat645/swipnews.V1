@@ -17,7 +17,7 @@ public class admindashboard extends popup implements MouseListener {
     private List<JLabel> newsLabels = new ArrayList<>();
     private List<JLabel> deleteIcons = new ArrayList<>();
     private List<String> news = new ArrayList<>();
-    private static final String NEWS_FILE = "./File/accout/news/news.csv";
+    private static final String NEWS_FILE = "./File/accout/news/news.txt";
 
     public admindashboard() {
         super();
@@ -137,8 +137,8 @@ public class admindashboard extends popup implements MouseListener {
         mainPanel.add(scrollPane);
 
         // ===== แถบล่าง =====
-        RoundedPanel adminbar = new RoundedPanel(30);
-        adminbar.setBackgroundColor(new Color(255, 255, 255, 230));
+        setRoundedPanel adminbar = new setRoundedPanel(30);
+        //adminbar.setBackgroundColor(new Color(255, 255, 255, 230));
         adminbar.setPreferredSize(new Dimension(170, 50));
         adminbar.setLayout(null);
 

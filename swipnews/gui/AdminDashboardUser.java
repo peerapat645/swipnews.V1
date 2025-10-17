@@ -67,7 +67,7 @@ public class AdminDashboardUser extends popup implements MouseListener {
 
             // ถ้าไม่ได้พิมพ์อะไรเลย
             if (keyword.isEmpty() || keyword.equals("search")) {
-                JOptionPane.showMessageDialog(this, "กรุณาพิมพ์คำค้นหา", "แจ้งเตือน", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter a search term", "Notification", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
@@ -83,7 +83,7 @@ public class AdminDashboardUser extends popup implements MouseListener {
             }
 
             if (!found) {
-                JOptionPane.showMessageDialog(this, "ไม่พบข่าวที่มีคำว่า \"" + keyword + "\"", "ผลการค้นหา", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No news found with the word \"" + keyword + "\"", "Search results", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         // placeholder
@@ -148,8 +148,8 @@ public class AdminDashboardUser extends popup implements MouseListener {
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
         // ====== Bottom Bar ======
-        RoundedPanel bottomBarContainer = new RoundedPanel(40);
-        bottomBarContainer.setBackgroundColor(new Color(255, 255, 255, 230));
+        setRoundedPanel bottomBarContainer = new setRoundedPanel(40);
+        //bottomBarContainer.setBackgroundColor(new Color(255, 255, 255, 230));
         bottomBarContainer.setPreferredSize(new Dimension(170, 50));
         bottomBarContainer.setLayout(null);
 
@@ -206,7 +206,7 @@ public class AdminDashboardUser extends popup implements MouseListener {
                 }
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "ไม่พบไฟล์: " + filePath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "File not found: " + filePath, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -231,13 +231,13 @@ public class AdminDashboardUser extends popup implements MouseListener {
                 }
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการลบข้อมูลผู้ใช้", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "An error occurred while deleting the user data.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // ลบไฟล์เก่าแล้วแทนที่ด้วย temp
         if (!inputFile.delete() || !tempFile.renameTo(inputFile)) {
-            JOptionPane.showMessageDialog(this, "ไม่สามารถอัปเดตไฟล์ได้", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unable to update the file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -254,8 +254,8 @@ public class AdminDashboardUser extends popup implements MouseListener {
             if (e.getSource() == banIcons.get(i)) {
                 String usernameToBan = usernames.get(i);
                 int confirm = JOptionPane.showConfirmDialog(this,
-                        "ต้องการแบนผู้ใช้ \"" + usernameToBan + "\" หรือไม่?",
-                        "ยืนยันการแบน",
+                        "Want to ban the user \"" + usernameToBan + "\" or not?",
+                        "Confirm the ban",
                         JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     removeUserFromCSV(usernameToBan);

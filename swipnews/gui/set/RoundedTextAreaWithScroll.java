@@ -16,7 +16,7 @@ public class RoundedTextAreaWithScroll extends JPanel {
         textArea = new JTextArea(rows, cols);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        textArea.setFont(new Font("Tahoma", Font.PLAIN, 16));
         textArea.setBorder(BorderFactory.createEmptyBorder(12, 16, 12, 16));
         textArea.setOpaque(false);
 
